@@ -197,11 +197,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: var(--color-navy);
-}
-a:hover {
-  color: var(--color-lime-dark);
+@layer base {
+  a {
+    color: var(--color-navy);
+  }
+  a:hover {
+    color: var(--color-lime-dark);
+  }
 }
 
 :focus-visible {
