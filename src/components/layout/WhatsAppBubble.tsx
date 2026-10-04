@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { useQuote } from "@/components/quote/QuoteProvider";
 import { company, generalGreeting, whatsappUrl } from "@/data/company";
 
 interface WhatsAppBubbleProps {
-  /** Lifts the bubble above the mobile quote tray (<768px). Wired in T3. */
+  /** Lifts the bubble above the mobile quote tray (<768px). Defaults to the tray visibility. */
   raised?: boolean;
 }
 
-export function WhatsAppBubble({ raised = false }: WhatsAppBubbleProps) {
+export function WhatsAppBubble({ raised: raisedOverride }: WhatsAppBubbleProps) {
+  const { trayVisible } = useQuote();
+  const raised = raisedOverride ?? trayVisible;
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);

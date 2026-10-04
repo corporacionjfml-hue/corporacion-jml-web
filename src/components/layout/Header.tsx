@@ -2,17 +2,20 @@
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { useQuote } from "@/components/quote/QuoteProvider";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { company } from "@/data/company";
 import { navItems } from "./navItems";
 
 interface HeaderProps {
-  /** Number of items in the quote list (wired to real state in T3). */
+  /** Overrides the live quote count (mainly for tests/previews). */
   quoteCount?: number;
 }
 
-export function Header({ quoteCount = 0 }: HeaderProps) {
+export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
+  const { count } = useQuote();
+  const quoteCount = quoteCountOverride ?? count;
   const [open, setOpen] = useState(false);
   const menuId = useId();
 

@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Outfit } from "next/font/google";
 import { company } from "@/data/company";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { QuoteProvider } from "@/components/quote/QuoteProvider";
 import { UtilBar } from "@/components/layout/UtilBar";
 import { WhatsAppBubble } from "@/components/layout/WhatsAppBubble";
 import "./globals.css";
@@ -42,11 +43,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Saltar al contenido
         </a>
-        <UtilBar />
-        <Header />
-        <main id="contenido">{children}</main>
-        <Footer />
-        <WhatsAppBubble />
+        <QuoteProvider>
+          <UtilBar />
+          <Header />
+          <main id="contenido">{children}</main>
+          <Footer />
+          <WhatsAppBubble />
+        </QuoteProvider>
       </body>
     </html>
   );

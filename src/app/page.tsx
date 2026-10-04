@@ -1,6 +1,7 @@
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { company } from "@/data/company";
+import { QuoteDevButtons } from "./QuoteDevButtons";
 
 /** Temporary home: proves tokens, fonts and primitives render. Replaced by T2+. */
 export default function Home() {
@@ -26,6 +27,8 @@ export default function Home() {
           Usar el asistente
         </a>
       </div>
+      {/* TODO(T4): remove with QuoteDevButtons */}
+      <QuoteDevButtons />
       <input
         className="field max-w-sm"
         placeholder="Campo de ejemplo"
