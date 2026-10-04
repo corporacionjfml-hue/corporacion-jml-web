@@ -5,7 +5,7 @@ import { company } from "@/data/company";
 /** Temporary home: proves tokens, fonts and primitives render. Replaced by T2+. */
 export default function Home() {
   return (
-    <main className="wrap flex flex-col items-start gap-6 py-14">
+    <div className="wrap flex flex-col items-start gap-6 py-14">
       <Logo />
       <span className="kicker">Catálogo técnico</span>
       <h1 className="h1">
@@ -31,6 +31,6 @@ export default function Home() {
         placeholder="Campo de ejemplo"
         aria-label="Campo de ejemplo"
       />
-    </main>
+    </div>
   );
 }

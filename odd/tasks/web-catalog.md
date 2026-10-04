@@ -19,8 +19,8 @@ Open client decisions (use provisional markers): form destination email (corpora
 - Artifact language: code and identifiers in English; user-visible site copy in Spanish (existing project language).
 
 ## Tasks
-- [ ] T1 Foundation: fonts (Outfit, IBM Plex Mono), Tailwind tokens/globals from design, layout + metadata (lang es), shared UI primitives, placeholder logo. Route: delegated writer.
-- [ ] T2 Shell: util bar, sticky header, mobile menu, footer, floating WhatsApp bubble with 2-number chooser. Route: delegated writer.
+- [x] T1 Foundation: fonts (Outfit, IBM Plex Mono), Tailwind tokens/globals from design, layout + metadata (lang es), shared UI primitives, placeholder logo. Route: delegated writer.
+- [x] T2 Shell: util bar, sticky header, mobile menu, footer, floating WhatsApp bubble with 2-number chooser. Route: delegated writer.
 - [ ] T3 Quote state: context + localStorage (id, quantity, unit, buyer type), quantity modal (rollos/metros rules), tray, WhatsApp message builder. Route: delegated writer.
 - [ ] T4 Catalog: categories bento, search, category chips, product cards, technical sheet modal. Route: delegated writer.
 - [ ] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
@@ -31,7 +31,8 @@ Open client decisions (use provisional markers): form destination email (corpora
 Matches the design values from the spec; responsive from 360 px; no "Corporación JML", no coeperperu, no prices, no PDF downloads; build exports static output.
 
 ## Progress log
-(empty)
+- T1 done: commits 5933806 + f7c5f28 (fix). Checks: tsc, lint, build OK. Review: medium, 789 lines, granted; 1 critical (unlayered `a` color overrode button text) fixed via @layer base; approved and acknowledged. Advisory: rename custom `ping` keyframes to avoid Tailwind collision (do in T2 when the WhatsApp bubble uses it). Reviewed boundary: f7c5f28.
+- T2 done (commit below): UtilBar, Header+mobile menu, Footer, WhatsApp bubble chooser, skip link; ping renamed ping-soft. Checks tsc/lint/build OK; not browser-tested.
 
 ## Next step
-T1.
+T3.

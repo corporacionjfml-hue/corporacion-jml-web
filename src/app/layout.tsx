@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Outfit } from "next/font/google";
 import { company } from "@/data/company";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { UtilBar } from "@/components/layout/UtilBar";
+import { WhatsAppBubble } from "@/components/layout/WhatsAppBubble";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -31,7 +35,19 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${outfit.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <a
+          href="#contenido"
+          className="skip-link fixed left-3 top-3 z-[70] rounded-md bg-navy px-4 py-3 font-semibold text-white"
+        >
+          Saltar al contenido
+        </a>
+        <UtilBar />
+        <Header />
+        <main id="contenido">{children}</main>
+        <Footer />
+        <WhatsAppBubble />
+      </body>
     </html>
   );
 }
