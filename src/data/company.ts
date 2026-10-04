@@ -20,6 +20,18 @@ export const company = {
   },
   /** Quotes are always sent to this WhatsApp number. */
   quotesWhatsApp: "51948271308",
+  /**
+   * PENDING CLIENT SETUP. Contact-form delivery for the static site.
+   * Leave `endpoint` empty until the client creates a free account with a form
+   * backend (e.g. Web3Forms: "https://api.web3forms.com/submit" + `accessKey`,
+   * or Formspree: "https://formspree.io/f/<id>", no key). Both are public
+   * values by design. While `endpoint` is empty, the form falls back to opening
+   * WhatsApp (quotes number) with the submitted data prefilled.
+   */
+  form: {
+    endpoint: "" as string,
+    accessKey: "" as string,
+  },
 } as const;
 
 /** Builds a wa.me link for a number (digits with country code) and an optional message. */

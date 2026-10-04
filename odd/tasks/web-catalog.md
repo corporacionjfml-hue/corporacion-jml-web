@@ -24,7 +24,7 @@ Open client decisions (use provisional markers): form destination email (corpora
 - [x] T3 Quote state: context + localStorage (id, quantity, unit, buyer type), quantity modal (rollos/metros rules), tray, WhatsApp message builder. Route: delegated writer.
 - [x] T4 Catalog: categories bento, search, category chips, product cards, technical sheet modal. Route: delegated writer.
 - [x] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
-- [ ] T6 Quote section + comparison table + anatomy section + contact form behavior. Route: delegated writer.
+- [x] T6 Quote section + comparison table + anatomy section + contact form behavior. Route: delegated writer.
 - [ ] T7 Detail pages `/cables/[slug]`, SEO (metadata, sitemap, robots, OG), responsive/accessibility pass. Route: delegated writer.
 
 ## Acceptance
@@ -40,6 +40,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - T5 done: Hero + 3-question Assistant (pure logic in src/lib/assistant, script-verified 24 combos), Marquee, HowItWorks, AdvisoryBand; tags adjusted in cables.ts. Headless Chrome: wizard end-to-end OK, badge count OK. FOUND: horizontal overflow at 360px from T2 header (hamburger right=374). Trust row item 2 is provisional neutral text (no manufacturer names).
 - 360px header overflow fixed (tighter mobile header/logo, badge overlaid <420px). Verified in real Chrome via a 375px iframe: no horizontal overflow at 360 with and without a 3-item quote badge. Desktop home top screenshot matches design. 320px not targeted (header still tight).
 - Review T5 + header fix (medium, 849 lines): granted, approved, acknowledged, boundary 6d88bf7. Advisory follow-ups (T7 polish): assistant.ts handle empty candidate list defensively; Marquee duplicated-block class concatenation; assistant tests if TDD enabled.
+- T6 done: QuoteSection (buyer type, editable lines, WhatsApp send), CallbackForm (configurable endpoint in company.ts form.*, WhatsApp fallback), ComparisonSection (15 rows), AnatomySection (NA2XY drawing). ~1060 lines. Bugs fixed: category colors were purged by Tailwind (@theme static), table sr-only spans caused 989px overflow at 360. Headless Chrome checks passed (see report); not verified: real POST, 360px visual of anatomy/table, #comparativa/#cotizar scroll offsets. Form endpoint pending client (Web3Forms/Formspree). Nosotros/Galería de obras (in proforma) not in design/plan: out of scope until user decides.
 
 ## Next step
-T6.
+T7.

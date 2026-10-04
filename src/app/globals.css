@@ -49,23 +49,7 @@
   /* Misc */
   --color-whatsapp: #25d366;
   --color-warn: #8a520a;
-
-  /* Category colors: fg (text), bg (soft background), fill (accent) */
-  --color-cat-autosoportados-fg: #3f6b10;
-  --color-cat-autosoportados-bg: #eaf5da;
-  --color-cat-autosoportados-fill: #8dc63f;
-  --color-cat-conductores-aluminio-fg: #1c5e9e;
-  --color-cat-conductores-aluminio-bg: #e2eefa;
-  --color-cat-conductores-aluminio-fill: #5aa3e6;
-  --color-cat-distribucion-subterranea-fg: #8a520a;
-  --color-cat-distribucion-subterranea-bg: #fbebd3;
-  --color-cat-distribucion-subterranea-fill: #eba640;
-  --color-cat-baja-tension-fg: #5b3fb5;
-  --color-cat-baja-tension-bg: #eee8fd;
-  --color-cat-baja-tension-fill: #a58bf0;
-  --color-cat-especiales-fg: #a93a1c;
-  --color-cat-especiales-bg: #fde6de;
-  --color-cat-especiales-fill: #f28b6b;
+  --color-danger: #b3261e;
 
   /* Radii (design scale) */
   --radius-xs: 8px;
@@ -122,6 +106,29 @@
   --breakpoint-bento3: 1080px;
   --breakpoint-anatomy: 1100px;
   --breakpoint-index-wide: 1140px;
+}
+
+/*
+ * Category colors are referenced by name at runtime (categoryColors() builds
+ * var(--color-cat-<id>-fg|bg|fill)), so Tailwind would tree-shake them. `static` keeps them.
+ */
+@theme static {
+  /* Category colors: fg (text), bg (soft background), fill (accent) */
+  --color-cat-autosoportados-fg: #3f6b10;
+  --color-cat-autosoportados-bg: #eaf5da;
+  --color-cat-autosoportados-fill: #8dc63f;
+  --color-cat-conductores-aluminio-fg: #1c5e9e;
+  --color-cat-conductores-aluminio-bg: #e2eefa;
+  --color-cat-conductores-aluminio-fill: #5aa3e6;
+  --color-cat-distribucion-subterranea-fg: #8a520a;
+  --color-cat-distribucion-subterranea-bg: #fbebd3;
+  --color-cat-distribucion-subterranea-fill: #eba640;
+  --color-cat-baja-tension-fg: #5b3fb5;
+  --color-cat-baja-tension-bg: #eee8fd;
+  --color-cat-baja-tension-fill: #a58bf0;
+  --color-cat-especiales-fg: #a93a1c;
+  --color-cat-especiales-bg: #fde6de;
+  --color-cat-especiales-fill: #f28b6b;
 }
 
 /* Keyframes (from the mockup) */
@@ -503,6 +510,9 @@ body {
     transition:
       border-color 0.2s,
       box-shadow 0.2s;
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
   }
   .field::placeholder,
   .search::placeholder {
