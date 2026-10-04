@@ -34,6 +34,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - T1 done: commits 5933806 + f7c5f28 (fix). Checks: tsc, lint, build OK. Review: medium, 789 lines, granted; 1 critical (unlayered `a` color overrode button text) fixed via @layer base; approved and acknowledged. Advisory: rename custom `ping` keyframes to avoid Tailwind collision (do in T2 when the WhatsApp bubble uses it). Reviewed boundary: f7c5f28.
 - T2 done (commit below): UtilBar, Header+mobile menu, Footer, WhatsApp bubble chooser, skip link; ping renamed ping-soft. Checks tsc/lint/build OK; not browser-tested.
 - T3 done: src/lib/quote (pure rules/message/storage, script-verified), QuoteProvider, QuantityModal, QuoteTray, temporary dev buttons (remove in T4). Checks tsc/lint/build OK; not browser-tested. T2 under budget (374 lines), review accumulates with T3.
+- Review T2+T3 (medium, 969 lines): granted, approved, acknowledged, boundary e5d90fb. Advisory follow-ups (not blocking, fix in T7 polish): disabled minus button loses focus in QuantityModal (focus trap/Escape break at minimum); cap max quantity and avoid exponent roundtrip on blur; storage-event sync across tabs; no committed tests for src/lib/quote (add if TDD gets enabled).
 
 ## Next step
 T4.
