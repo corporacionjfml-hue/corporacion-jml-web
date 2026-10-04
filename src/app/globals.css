@@ -1,26 +1,532 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+ * Design tokens for "Propuesta 4" (see docs/diseno-propuesta-4.md).
+ * Tailwind v4: tokens live in @theme, there is no tailwind.config.
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* Brand */
+  --color-navy: #1b3a5c;
+  --color-navy-hover: #244c77;
+  --color-navy-deep: #14304d;
+  --color-ink: #14263a;
+  --color-ink-slogan: #2d2d2d;
+  --color-lime: #8dc63f;
+  --color-lime-hover: #9bd24e;
+  --color-lime-dark: #3f6b10;
+  --color-lime-deep: #2f5409;
+  --color-lime-soft: #eaf5da;
+  --color-lime-soft-hover: #ddf0c4;
+
+  /* Surfaces and borders */
+  --color-page: #f4f6f1;
+  --color-line: #dde4ea;
+  --color-line-soft: #e3e8ed;
+  --color-line-faint: #e6ebf0;
+  --color-line-fainter: #eef1f4;
+  --color-line-track: #e9eef2;
+  --color-line-hover: #b7c3ce;
+  --color-line-dashed: #c9d3dc;
+  --color-field: #f7f9fa;
+  --color-row-alt: #f6f8fa;
+  --color-chip: #f2f5f7;
+
+  /* Text grays */
+  --color-mute: #4f5f70;
+  --color-mute-2: #5a6b7c;
+  --color-mute-3: #2b3b4c;
+  --color-placeholder: #7a8896;
+  --color-dash: #9aa7b4;
+  --color-on-navy: #d5dee7;
+  --color-on-navy-2: #c9d5e1;
+  --color-on-navy-3: #b9c7d4;
+
+  /* Misc */
+  --color-whatsapp: #25d366;
+  --color-warn: #8a520a;
+
+  /* Category colors: fg (text), bg (soft background), fill (accent) */
+  --color-cat-autosoportados-fg: #3f6b10;
+  --color-cat-autosoportados-bg: #eaf5da;
+  --color-cat-autosoportados-fill: #8dc63f;
+  --color-cat-conductores-aluminio-fg: #1c5e9e;
+  --color-cat-conductores-aluminio-bg: #e2eefa;
+  --color-cat-conductores-aluminio-fill: #5aa3e6;
+  --color-cat-distribucion-subterranea-fg: #8a520a;
+  --color-cat-distribucion-subterranea-bg: #fbebd3;
+  --color-cat-distribucion-subterranea-fill: #eba640;
+  --color-cat-baja-tension-fg: #5b3fb5;
+  --color-cat-baja-tension-bg: #eee8fd;
+  --color-cat-baja-tension-fill: #a58bf0;
+  --color-cat-especiales-fg: #a93a1c;
+  --color-cat-especiales-bg: #fde6de;
+  --color-cat-especiales-fill: #f28b6b;
+
+  /* Radii (design scale) */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
+  --radius-3xl: 20px;
+  --radius-card: 22px;
+  --radius-tile: 24px;
+  --radius-panel: 26px;
+  --radius-band: 30px;
+
+  /* Shadows */
+  --shadow-btn-navy: 0 10px 24px -12px rgba(27, 58, 92, 0.8);
+  --shadow-btn-lime: 0 10px 24px -12px rgba(94, 140, 30, 0.9);
+  --shadow-card-hover: 0 30px 60px -30px rgba(20, 38, 58, 0.5);
+  --shadow-tile-hover: 0 26px 50px -26px rgba(20, 38, 58, 0.45);
+  --shadow-wizard: 0 40px 80px -30px rgba(20, 38, 58, 0.45);
+  --shadow-panel: 0 40px 80px -30px rgba(20, 38, 58, 0.6);
+  --shadow-tray: 0 20px 40px -16px rgba(20, 38, 58, 0.7);
+  --shadow-wa: 0 12px 28px -8px rgba(0, 0, 0, 0.45);
+  --shadow-wa-tip: 0 10px 26px -10px rgba(0, 0, 0, 0.35);
+  --shadow-table: 0 20px 50px -34px rgba(20, 38, 58, 0.4);
+  --shadow-focus: 0 0 0 4px rgba(141, 198, 63, 0.35);
+
+  /* Motion */
+  --ease-design: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-rise: rise 0.8s var(--ease-design) both;
+  --animate-swipe: swipe 1s 0.4s var(--ease-design) both;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-spin-slower: spin 90s linear infinite reverse;
+  --animate-blob: morph 12s ease-in-out infinite;
+  --animate-bob: bob 5s ease-in-out infinite;
+  --animate-marquee: slide 38s linear infinite;
+  --animate-wa-ping: waping 2.2s ease-out infinite;
+  --animate-pulse-ring: ping 2s ease-out infinite;
+
+  /*
+   * Breakpoints used by the design (min-width). Tailwind generates
+   * `xs:`, `logo:`, `md:` ... variants from these.
+   */
+  --breakpoint-xs: 430px;
+  --breakpoint-logo: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-bento: 720px;
+  --breakpoint-index: 760px;
+  --breakpoint-md: 768px;
+  --breakpoint-band: 900px;
+  --breakpoint-lg: 960px;
+  --breakpoint-hero: 1000px;
+  --breakpoint-hero4: 1040px;
+  --breakpoint-bento3: 1080px;
+  --breakpoint-anatomy: 1100px;
+  --breakpoint-index-wide: 1140px;
+}
+
+/* Keyframes (from the mockup) */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes swipe {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes morph {
+  50% {
+    border-radius: 58% 42% 55% 45% / 45% 58% 42% 55%;
+  }
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes ping {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+@keyframes waping {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
   }
 }
 
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-navy);
+}
+a:hover {
+  color: var(--color-lime-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 2px;
+}
+
+/* Reusable patterns */
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding: 0 40px;
+    }
+  }
+
+  .h1 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(40px, 7vw, 86px);
+    line-height: 0.98;
+    letter-spacing: -2.5px;
+    font-weight: 800;
+  }
+  .h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(32px, 4.6vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -1.4px;
+    font-weight: 800;
+  }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--color-lime-dark);
+  }
+  .kicker::before {
+    content: "";
+    width: 22px;
+    height: 3px;
+    background: var(--color-lime);
+    border-radius: 2px;
+  }
+
+  /* Highlighted words in headings */
+  .mark {
+    padding: 0 0.08em;
+    background-image: linear-gradient(
+      transparent 56%,
+      var(--color-lime) 56%,
+      var(--color-lime) 90%,
+      transparent 90%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    animation: var(--animate-swipe);
+  }
+
+  /* Entrance animation with optional stagger */
+  .rise {
+    animation: var(--animate-rise);
+  }
+  .d1 {
+    animation-delay: 0.08s;
+  }
+  .d2 {
+    animation-delay: 0.18s;
+  }
+  .d3 {
+    animation-delay: 0.28s;
+  }
+  .d4 {
+    animation-delay: 0.38s;
+  }
+
+  /* Looping decorative animations */
+  .spin {
+    animation: var(--animate-spin-slow);
+    transform-origin: 50% 50%;
+  }
+  .ring {
+    animation: var(--animate-spin-slower);
+    transform-origin: 50% 50%;
+  }
+  .blob {
+    animation: var(--animate-blob);
+  }
+  .tag {
+    animation: var(--animate-bob);
+  }
+  .t2 {
+    animation-delay: -1.6s;
+  }
+  .t3 {
+    animation-delay: -3.2s;
+  }
+  .marquee {
+    animation: var(--animate-marquee);
+  }
+  .pulse {
+    position: relative;
+  }
+  .pulse::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 2px solid var(--color-lime);
+    animation: var(--animate-pulse-ring);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 24px;
+    border-radius: var(--radius-lg);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    transition:
+      transform 0.2s,
+      background 0.2s,
+      box-shadow 0.2s,
+      color 0.2s;
+  }
+  .btn-navy {
+    background: var(--color-navy);
+    color: #fff;
+    box-shadow: var(--shadow-btn-navy);
+  }
+  .btn-navy:hover {
+    background: var(--color-navy-hover);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .btn-lime {
+    background: var(--color-lime);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-btn-lime);
+  }
+  .btn-lime:hover {
+    background: var(--color-lime-hover);
+    color: var(--color-ink);
+    transform: translateY(-2px);
+  }
+  .btn-line {
+    background: #fff;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+  }
+  .btn-line:hover {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  /* Outline button for dark (navy) backgrounds */
+  .btn-wline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  .btn-wline:hover {
+    background: #fff;
+    color: var(--color-navy);
+  }
+  .btn-lg {
+    min-height: 58px;
+  }
+
+  .iconbtn {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    color: var(--color-navy);
+    cursor: pointer;
+  }
+  .iconbtn:hover {
+    background: var(--color-lime-soft);
+  }
+
+  /* Chips */
+  .chip {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .chip-off {
+    background: #fff;
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-line);
+  }
+  .chip-off:hover {
+    border-color: var(--color-navy);
+  }
+  .chip-on {
+    background: var(--color-navy);
+    color: #fff;
+    border: 1.5px solid var(--color-navy);
+  }
+
+  /* Form fields */
+  .field {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: var(--color-field);
+    border: 2px solid var(--color-line);
+    color: var(--color-ink);
+    font-family: inherit;
+    font-size: 15.5px;
+    outline: none;
+  }
+  .search {
+    width: 100%;
+    min-height: 58px;
+    padding: 0 18px 0 52px;
+    border-radius: var(--radius-xl);
+    background: #fff;
+    border: 2px solid var(--color-line);
+    color: var(--color-ink);
+    font-family: inherit;
+    font-size: 17px;
+    outline: none;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .field::placeholder,
+  .search::placeholder {
+    color: var(--color-placeholder);
+  }
+  .field:focus,
+  .search:focus {
+    border-color: var(--color-navy);
+    box-shadow: var(--shadow-focus);
+  }
+  .lbl {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  /* Pill (rounded label) */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--color-navy);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+/* Reduced motion: disable every animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .mark,
+  .spin,
+  .ring,
+  .blob,
+  .tag,
+  .marquee,
+  .pulse::after,
+  .wa-btn::after {
+    animation: none !important;
+  }
 }
