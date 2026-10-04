@@ -54,7 +54,7 @@ export function buildCableDescription(cable: Cable): string {
 
 /** Serializes JSON-LD safely for an inline script (escapes "<"). */
 export function serializeJsonLd(data: unknown): string {
-  return JSON.stringify(data).replace(/</g, "\u003c");
+  return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
 export function breadcrumbJsonLd(cable: Cable) {
