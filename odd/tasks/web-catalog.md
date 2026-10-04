@@ -39,6 +39,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - Review T4 (medium, 1414 lines): granted, approved, acknowledged, boundary 6b7097d. Advisory follow-ups (T7 polish): guard empty variants in CableSheetModal (crash if a cable has no variants); dangling '#cotizar' link until T6 section exists; no committed tests for catalog search.
 - T5 done: Hero + 3-question Assistant (pure logic in src/lib/assistant, script-verified 24 combos), Marquee, HowItWorks, AdvisoryBand; tags adjusted in cables.ts. Headless Chrome: wizard end-to-end OK, badge count OK. FOUND: horizontal overflow at 360px from T2 header (hamburger right=374). Trust row item 2 is provisional neutral text (no manufacturer names).
 - 360px header overflow fixed (tighter mobile header/logo, badge overlaid <420px). Verified in real Chrome via a 375px iframe: no horizontal overflow at 360 with and without a 3-item quote badge. Desktop home top screenshot matches design. 320px not targeted (header still tight).
+- Review T5 + header fix (medium, 849 lines): granted, approved, acknowledged, boundary 6d88bf7. Advisory follow-ups (T7 polish): assistant.ts handle empty candidate list defensively; Marquee duplicated-block class concatenation; assistant tests if TDD enabled.
 
 ## Next step
 T6.
