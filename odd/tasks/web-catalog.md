@@ -23,7 +23,7 @@ Open client decisions (use provisional markers): form destination email (corpora
 - [x] T2 Shell: util bar, sticky header, mobile menu, footer, floating WhatsApp bubble with 2-number chooser. Route: delegated writer.
 - [x] T3 Quote state: context + localStorage (id, quantity, unit, buyer type), quantity modal (rollos/metros rules), tray, WhatsApp message builder. Route: delegated writer.
 - [x] T4 Catalog: categories bento, search, category chips, product cards, technical sheet modal. Route: delegated writer.
-- [ ] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
+- [x] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
 - [ ] T6 Quote section + comparison table + anatomy section + contact form behavior. Route: delegated writer.
 - [ ] T7 Detail pages `/cables/[slug]`, SEO (metadata, sitemap, robots, OG), responsive/accessibility pass. Route: delegated writer.
 
@@ -37,6 +37,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - Review T2+T3 (medium, 969 lines): granted, approved, acknowledged, boundary e5d90fb. Advisory follow-ups (not blocking, fix in T7 polish): disabled minus button loses focus in QuantityModal (focus trap/Escape break at minimum); cap max quantity and avoid exponent roundtrip on blur; storage-event sync across tabs; no committed tests for src/lib/quote (add if TDD gets enabled).
 - T4 done: catalog (categories bento, search/filter, cards, sheet modal, useCableSheet hook), dev buttons removed. ~1190 lines. Checks tsc/lint/build OK; scripted headless-Chrome DOM checks passed (15 cards, search, empty state, sheet/quantity modals, Escape order). Not verified: scroll to #productos after tile click, focus restore, hover, 360px visual.
 - Review T4 (medium, 1414 lines): granted, approved, acknowledged, boundary 6b7097d. Advisory follow-ups (T7 polish): guard empty variants in CableSheetModal (crash if a cable has no variants); dangling '#cotizar' link until T6 section exists; no committed tests for catalog search.
+- T5 done: Hero + 3-question Assistant (pure logic in src/lib/assistant, script-verified 24 combos), Marquee, HowItWorks, AdvisoryBand; tags adjusted in cables.ts. Headless Chrome: wizard end-to-end OK, badge count OK. FOUND: horizontal overflow at 360px from T2 header (hamburger right=374). Trust row item 2 is provisional neutral text (no manufacturer names).
 
 ## Next step
-T5.
+Fix 360px header overflow, then T6.

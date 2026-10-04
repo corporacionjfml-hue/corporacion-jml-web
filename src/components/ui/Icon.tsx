@@ -65,6 +65,30 @@ const icons = {
   ),
   cloud: <path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 1 1 0 9z" />,
   thermometer: <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" />,
+  /* Assistant and steps */
+  building: (
+    <>
+      <rect x="4" y="3" width="16" height="18" rx="1" />
+      <path d="M9 21v-4h6v4M8 7h2M14 7h2M8 11h2M14 11h2" />
+    </>
+  ),
+  industry: <path d="M2 21h20M4 21V11l5 3v-3l5 3V5h4v16" />,
+  vehicle: (
+    <>
+      <path d="M5 17h14M3 17v-4l2-5h14l2 5v4" />
+      <circle cx="7" cy="17" r="2" />
+      <circle cx="17" cy="17" r="2" />
+    </>
+  ),
+  ground: <path d="M12 3v9M4 12h16M7 16h10M10 20h4" />,
+  boxes: <path d="M12 3 3 7.5v9L12 21l9-4.5v-9L12 3zM3 7.5l9 4.5 9-4.5M12 12v9" />,
+  bag: <path d="M5 8h14l-1 12H6L5 8zM9 8a3 3 0 0 1 6 0" />,
+  sheet: (
+    <>
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <path d="M8 7h8M8 11h3M13 11h3M8 15h3M13 15h3" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof icons;

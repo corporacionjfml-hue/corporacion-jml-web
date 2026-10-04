@@ -319,7 +319,7 @@ export const cables: Cable[] = [
       "En incendio: no genera humos, no produce gases tóxicos, no propaga el fuego",
     ],
     tags: {
-      installation: ["interior", "industrial"],
+      installation: ["interior"],
       priority: ["seguridad-incendio"],
     },
     unit: "rollos",
@@ -513,7 +513,7 @@ export const cables: Cable[] = [
     ],
     gaugeRange: "Desde 1.5 mm² hasta 630 mm²",
     tags: {
-      installation: ["interior", "industrial"],
+      installation: ["interior", "industrial", "subterranea"],
       priority: ["seguridad-incendio", "intemperie"],
     },
     unit: "metros",
@@ -579,7 +579,7 @@ export const cables: Cable[] = [
     ],
     gaugeRange: "Desde 6 mm² hasta 500 mm²",
     tags: {
-      installation: ["interior", "industrial"],
+      installation: ["interior", "industrial", "subterranea"],
       priority: ["seguridad-incendio"],
     },
     unit: "metros",
@@ -648,7 +648,7 @@ export const cables: Cable[] = [
       "Cubierta PVC: resistencia a ácidos, grasas, aceites y abrasión",
     ],
     tags: {
-      installation: ["domestico"],
+      installation: ["domestico", "vehiculos"],
       priority: ["flexibilidad", "uso-general"],
     },
     unit: "rollos",
@@ -735,7 +735,7 @@ export const cables: Cable[] = [
     ],
     features: ["Conductor muy flexible", "Soporta 80°C", "Colores a pedido del cliente"],
     tags: {
-      installation: ["soldadura", "industrial"],
+      installation: ["soldadura", "industrial", "vehiculos"],
       priority: ["flexibilidad", "alta-corriente"],
     },
     unit: "metros",
@@ -917,7 +917,7 @@ export const cables: Cable[] = [
       "Excelentes propiedades dieléctricas del aislante PVC",
     ],
     tags: {
-      installation: ["vehiculos", "interior"],
+      installation: ["vehiculos"],
       priority: ["flexibilidad", "resistencia-mecanica"],
     },
     unit: "metros",
