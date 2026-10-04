@@ -30,7 +30,7 @@ export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line-soft bg-white/92 backdrop-blur-[16px]">
-      <div className="wrap flex min-h-[78px] items-center justify-between gap-4">
+      <div className="wrap flex min-h-[78px] items-center justify-between gap-4 max-[419px]:gap-2 max-[419px]:px-3.5">
         <Link
           href="/"
           aria-label={`${company.name}, ir al inicio`}
@@ -39,7 +39,10 @@ export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
           <Logo />
         </Link>
 
-        <nav aria-label="Principal" className="hidden items-center gap-1.5 lg:flex">
+        <nav
+          aria-label="Principal"
+          className="hidden items-center gap-1.5 lg:flex"
+        >
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="navlink">
               {item.label}
@@ -47,14 +50,17 @@ export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 max-[419px]:gap-1.5">
           <Link
             href="/#cotizar"
-            className="btn btn-lime pulse min-h-[46px] gap-2 whitespace-nowrap px-3.5"
+            className="btn btn-lime pulse relative min-h-[46px] gap-2 whitespace-nowrap px-3.5 max-[419px]:px-3"
           >
             Cotizar
             {quoteCount > 0 && (
-              <span className="badge" aria-label={`${quoteCount} en tu cotización`}>
+              <span
+                className="badge max-[419px]:absolute max-[419px]:-right-2 max-[419px]:-top-2"
+                aria-label={`${quoteCount} en tu cotización`}
+              >
                 {quoteCount}
               </span>
             )}
