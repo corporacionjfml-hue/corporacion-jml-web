@@ -566,3 +566,92 @@ body {
     animation: none !important;
   }
 }
+
+/* Catalog: quote state, sheet tabs and technical table */
+@layer components {
+  .btn-added {
+    background: var(--color-lime-soft);
+    color: var(--color-lime-deep);
+    border: 2px solid var(--color-lime);
+  }
+  .btn-added:hover {
+    background: var(--color-lime-soft-hover);
+    color: var(--color-lime-deep);
+  }
+
+  .tab {
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .tab-on {
+    background: var(--color-navy);
+    color: #fff;
+    border: 2px solid var(--color-navy);
+  }
+  .tab-off {
+    background: #fff;
+    color: var(--color-navy);
+    border: 2px solid var(--color-line);
+  }
+  .tab-off:hover {
+    border-color: var(--color-navy);
+  }
+
+  .sheet-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-align: left;
+  }
+  .sheet-table thead th {
+    padding: 13px 12px;
+    background: var(--color-navy);
+    color: #fff;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .sheet-table thead th:first-child {
+    background: var(--color-navy-deep);
+    color: var(--color-lime);
+  }
+  .sheet-table tbody th,
+  .sheet-table tbody td {
+    padding: 10px 12px;
+    border-top: 1px solid var(--color-line-faint);
+    border-right: 1px solid var(--color-line-fainter);
+    color: var(--color-mute-3);
+    font-weight: 400;
+    transition: background 0.15s;
+  }
+  .sheet-table tbody tr:nth-child(even) > * {
+    background: var(--color-row-alt);
+  }
+  .sheet-table tbody tr:hover > * {
+    background: var(--color-lime-soft);
+  }
+  /* First column stays visible while the table scrolls horizontally */
+  .sheet-table thead th:first-child,
+  .sheet-table tbody th {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+  .sheet-table tbody th {
+    background: #fff;
+    color: var(--color-ink);
+    font-weight: 600;
+    box-shadow: 6px 0 10px -8px rgba(20, 38, 58, 0.35);
+  }
+}

@@ -22,7 +22,7 @@ Open client decisions (use provisional markers): form destination email (corpora
 - [x] T1 Foundation: fonts (Outfit, IBM Plex Mono), Tailwind tokens/globals from design, layout + metadata (lang es), shared UI primitives, placeholder logo. Route: delegated writer.
 - [x] T2 Shell: util bar, sticky header, mobile menu, footer, floating WhatsApp bubble with 2-number chooser. Route: delegated writer.
 - [x] T3 Quote state: context + localStorage (id, quantity, unit, buyer type), quantity modal (rollos/metros rules), tray, WhatsApp message builder. Route: delegated writer.
-- [ ] T4 Catalog: categories bento, search, category chips, product cards, technical sheet modal. Route: delegated writer.
+- [x] T4 Catalog: categories bento, search, category chips, product cards, technical sheet modal. Route: delegated writer.
 - [ ] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
 - [ ] T6 Quote section + comparison table + anatomy section + contact form behavior. Route: delegated writer.
 - [ ] T7 Detail pages `/cables/[slug]`, SEO (metadata, sitemap, robots, OG), responsive/accessibility pass. Route: delegated writer.
@@ -35,6 +35,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - T2 done (commit below): UtilBar, Header+mobile menu, Footer, WhatsApp bubble chooser, skip link; ping renamed ping-soft. Checks tsc/lint/build OK; not browser-tested.
 - T3 done: src/lib/quote (pure rules/message/storage, script-verified), QuoteProvider, QuantityModal, QuoteTray, temporary dev buttons (remove in T4). Checks tsc/lint/build OK; not browser-tested. T2 under budget (374 lines), review accumulates with T3.
 - Review T2+T3 (medium, 969 lines): granted, approved, acknowledged, boundary e5d90fb. Advisory follow-ups (not blocking, fix in T7 polish): disabled minus button loses focus in QuantityModal (focus trap/Escape break at minimum); cap max quantity and avoid exponent roundtrip on blur; storage-event sync across tabs; no committed tests for src/lib/quote (add if TDD gets enabled).
+- T4 done: catalog (categories bento, search/filter, cards, sheet modal, useCableSheet hook), dev buttons removed. ~1190 lines. Checks tsc/lint/build OK; scripted headless-Chrome DOM checks passed (15 cards, search, empty state, sheet/quantity modals, Escape order). Not verified: scroll to #productos after tile click, focus restore, hover, 360px visual.
 
 ## Next step
-T4.
+T5.
