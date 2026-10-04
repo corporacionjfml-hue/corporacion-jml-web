@@ -1,24 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, type KeyboardEvent } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { categories } from "@/data/cables";
 import { company, whatsappUrl } from "@/data/company";
-import type { Cable, CableVariant } from "@/data/types";
+import type { Cable } from "@/data/types";
 import { categoryColors } from "@/lib/catalog/categories";
-import {
-  applicationIcon,
-  featureIcon,
-  getGaugeRange,
-} from "@/lib/catalog/display";
 import { findCable } from "@/lib/quote/catalog";
+import { CableSheetContent } from "./CableSheetContent";
 import { QuoteButton } from "./QuoteButton";
 
 const FOCUSABLE =
   "button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex='-1'])";
-
-const KICKER = "kicker m-0";
 
 interface CableSheetModalProps {
   cableId: string;
@@ -40,15 +34,10 @@ function SheetDialog({
   onClose: () => void;
 }) {
   const titleId = useId();
-  const tabsId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
-  const [variantIndex, setVariantIndex] = useState(0);
 
-  const variant: CableVariant =
-    cable.variants[variantIndex] ?? cable.variants[0];
   const category = categories.find((item) => item.id === cable.categoryId);
   const colors = categoryColors(cable.categoryId);
-  const hasTabs = cable.variants.length > 1;
 
   // Scroll lock and focus management; restore both on unmount.
   useEffect(() => {
@@ -84,43 +73,6 @@ function SheetDialog({
     }
   };
 
-  const onTabKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    const count = cable.variants.length;
-    let next = variantIndex;
-    if (e.key === "ArrowRight") next = (variantIndex + 1) % count;
-    else if (e.key === "ArrowLeft") next = (variantIndex - 1 + count) % count;
-    else if (e.key === "Home") next = 0;
-    else if (e.key === "End") next = count - 1;
-    else return;
-    e.preventDefault();
-    setVariantIndex(next);
-    e.currentTarget
-      .querySelectorAll<HTMLElement>("[role='tab']")
-      [next]?.focus();
-  };
-
-  const temperature = cable.temperature;
-  const specCandidates: [string, string | undefined][] = [
-    ["Tensión nominal", cable.voltage],
-    ["T° operación", temperature?.operation],
-    ["T° emergencia", temperature?.emergency],
-    ["Cortocircuito", temperature?.shortCircuit],
-    ["Fabricante", cable.manufacturer],
-    ["Rango", getGaugeRange(cable)],
-  ];
-  const specs = specCandidates
-    .filter(
-      (entry): entry is [string, string] =>
-        Boolean(entry[1]) && entry[1] !== "—",
-    )
-    .slice(0, 4);
-
-  const applications = [
-    ...cable.applications,
-    ...(variant.applications ?? []).filter(
-      (text) => !cable.applications.includes(text),
-    ),
-  ];
   const whatsappLink = whatsappUrl(
     company.quotesWhatsApp,
     `Hola ${company.name}, quisiera cotizar el cable ${cable.name}.`,
@@ -168,207 +120,8 @@ function SheetDialog({
           </button>
         </div>
 
-        <div className="flex flex-col gap-8 px-6 pb-[30px] pt-[26px]">
-          {specs.length > 0 && (
-            <dl className="m-0 grid grid-cols-2 gap-2.5 md:grid-cols-4">
-              {specs.map(([label, value]) => (
-                <div
-                  key={label}
-                  className="rounded-xl border border-line-soft bg-page p-4"
-                >
-                  <dt className="font-mono text-[10.5px] uppercase tracking-[1.2px] text-mute-2">
-                    {label}
-                  </dt>
-                  <dd className="m-0 mt-1.5 text-[20px] font-extrabold text-navy">
-                    {value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )}
 
-          <div className="grid grid-cols-1 gap-[30px] band:grid-cols-2">
-            <section className="flex flex-col gap-3.5">
-              <h3 className={KICKER}>Descripción</h3>
-              <p className="m-0 text-[16.5px] leading-[1.65] text-mute-3">
-                {cable.description}
-              </p>
-              {cable.construction.length > 0 && (
-                <>
-                  <h3 className={`${KICKER} mt-2`}>Construcción</h3>
-                  <ol className="m-0 flex list-none flex-col gap-2 p-0">
-                    {cable.construction.map((text, i) => (
-                      <li
-                        key={text}
-                        className="flex items-baseline gap-3 text-[15px] leading-[1.45] text-mute-3"
-                      >
-                        <span className="inline-flex size-[26px] shrink-0 items-center justify-center rounded-xs bg-navy font-mono text-[12px] font-semibold text-lime">
-                          {i + 1}
-                        </span>
-                        {text}
-                      </li>
-                    ))}
-                  </ol>
-                </>
-              )}
-            </section>
-
-            <section className="flex flex-col gap-3.5">
-              <h3 className={KICKER}>Características</h3>
-              <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2.5 p-0">
-                {cable.features.map((text) => (
-                  <li
-                    key={text}
-                    className="flex items-center gap-3 rounded-lg border border-line-soft bg-white px-3.5 py-3"
-                  >
-                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md bg-lime-soft text-lime-dark">
-                      <Icon
-                        name={featureIcon(text)}
-                        size={20}
-                        strokeWidth={1.8}
-                      />
-                    </span>
-                    <span className="text-[14.5px] font-medium leading-[1.3] text-ink">
-                      {text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {cable.standards.length > 0 && (
-                <>
-                  <h3 className={`${KICKER} mt-2`}>Normas de fabricación</h3>
-                  <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
-                    {cable.standards.map((text) => (
-                      <li
-                        key={text}
-                        className="rounded-sm bg-navy px-3 py-2 font-mono text-[12.5px] text-white"
-                      >
-                        {text}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-              {cable.certificates && cable.certificates.length > 0 && (
-                <>
-                  <h3 className={`${KICKER} mt-2`}>Certificados</h3>
-                  <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
-                    {cable.certificates.map((text) => (
-                      <li
-                        key={text}
-                        className="rounded-sm bg-lime-soft px-3 py-2 text-[13px] font-semibold text-lime-deep"
-                      >
-                        {text}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </section>
-          </div>
-
-          <section className="flex flex-col gap-3.5">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 className={KICKER}>Hoja de datos técnicos</h3>
-              {hasTabs && (
-                <div
-                  role="tablist"
-                  aria-label="Tablas de datos técnicos"
-                  className="flex flex-wrap gap-2"
-                  onKeyDown={onTabKeyDown}
-                >
-                  {cable.variants.map((item, i) => {
-                    const active = i === variantIndex;
-                    return (
-                      <button
-                        key={item.id}
-                        id={`${tabsId}-tab-${i}`}
-                        type="button"
-                        role="tab"
-                        aria-selected={active}
-                        aria-controls={`${tabsId}-panel`}
-                        tabIndex={active ? 0 : -1}
-                        className={`tab ${active ? "tab-on" : "tab-off"}`}
-                        onClick={() => setVariantIndex(i)}
-                      >
-                        {item.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <div
-              id={`${tabsId}-panel`}
-              role={hasTabs ? "tabpanel" : undefined}
-              aria-labelledby={
-                hasTabs ? `${tabsId}-tab-${variantIndex}` : undefined
-              }
-              className="flex flex-col gap-3.5"
-            >
-              {variant.description && (
-                <p className="m-0 text-[15px] leading-[1.6] text-mute-3">
-                  {variant.description}
-                </p>
-              )}
-              {variant.tableStatus === "available" ? (
-                <SpecTableView
-                  cable={cable}
-                  variant={variant}
-                  table={variant.table}
-                />
-              ) : (
-                <div className="flex flex-col items-start gap-3.5 rounded-xl border-2 border-dashed border-line-dashed bg-page p-6">
-                  <p className="m-0 text-[22px] font-extrabold text-ink">
-                    Calibres a pedido
-                  </p>
-                  <p className="m-0 text-[15px] leading-[1.55] text-mute">
-                    Esta ficha aún no tiene tabla de calibres. Cuéntanos qué
-                    necesitas y te cotizamos los calibres disponibles.
-                  </p>
-                  <QuoteButton cable={cable} />
-                </div>
-              )}
-              {variant.notes && variant.notes.length > 0 && (
-                <ul className="m-0 flex list-disc flex-col gap-1 pl-5 text-[14px] leading-[1.5] text-mute-3">
-                  {variant.notes.map((note) => (
-                    <li key={note}>{note}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            <p className="m-0 text-[12.5px] text-mute-2">
-              Valores referenciales de ficha técnica del fabricante. Confirme
-              con un asesor antes de especificar.
-            </p>
-          </section>
-
-          {applications.length > 0 && (
-            <section className="flex flex-col gap-3.5">
-              <h3 className={KICKER}>Aplicaciones</h3>
-              <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-3 p-0">
-                {applications.map((text) => (
-                  <li
-                    key={text}
-                    className="flex flex-col gap-3.5 rounded-2xl bg-lime-soft p-5"
-                  >
-                    <span className="inline-flex size-[54px] items-center justify-center rounded-lg bg-navy text-lime">
-                      <Icon
-                        name={applicationIcon(text)}
-                        size={26}
-                        strokeWidth={1.8}
-                      />
-                    </span>
-                    <span className="text-[15.5px] font-semibold leading-[1.35] text-ink">
-                      {text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
+        <CableSheetContent cable={cable} headingLevel="h3">
           <div className="flex flex-wrap gap-3 border-t border-line-soft pt-[22px]">
             <a
               href={whatsappLink}
@@ -378,69 +131,21 @@ function SheetDialog({
             >
               <Icon name="whatsapp" size={18} />
               Cotizar {cable.name} por WhatsApp
+              <span className="sr-only"> (se abre en una pestaña nueva)</span>
             </a>
             <QuoteButton cable={cable} />
+            <Link
+              href={`/cables/${cable.slug}/`}
+              className="btn btn-line"
+              onClick={onClose}
+            >
+              Ver página completa
+            </Link>
             <Link href="/#cotizar" className="btn btn-line" onClick={onClose}>
               Ir a mi cotización
             </Link>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SpecTableView({
-  cable,
-  variant,
-  table,
-}: {
-  cable: Cable;
-  variant: CableVariant;
-  table: { columns: string[]; rows: (string | null)[][] };
-}) {
-  const columnCount = table.columns.length;
-  const minWidth = columnCount === 2 ? 400 : 140 + (columnCount - 1) * 100;
-  const caption = `${cable.name} · ${variant.label}`;
-
-  return (
-    <div className="overflow-hidden rounded-xl border border-line">
-      <div className="flex justify-between gap-2.5 border-b border-line bg-page px-3.5 py-2.5 font-mono text-[11px] uppercase tracking-[1px] text-mute">
-        <span>{caption}</span>
-        <span>{table.rows.length} filas</span>
-      </div>
-      <div
-        className="overflow-x-auto [-webkit-overflow-scrolling:touch] [scrollbar-width:thin]"
-        role="region"
-        aria-label={`Tabla técnica: ${caption}`}
-        tabIndex={0}
-      >
-        <table className="sheet-table" style={{ minWidth }}>
-          <thead>
-            <tr>
-              {table.columns.map((column) => (
-                <th key={column} scope="col">
-                  {column}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.rows.map((row, rowIndex) => (
-              <tr key={`${row[0] ?? "row"}-${rowIndex}`}>
-                {row.map((cell, cellIndex) =>
-                  cellIndex === 0 ? (
-                    <th key={cellIndex} scope="row">
-                      {cell ?? "—"}
-                    </th>
-                  ) : (
-                    <td key={cellIndex}>{cell ?? "—"}</td>
-                  ),
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        </CableSheetContent>
       </div>
     </div>
   );

@@ -100,7 +100,7 @@ export function ComparisonSection() {
                         <button
                           type="button"
                           onClick={() => open(cable.id)}
-                          className="min-h-11 cursor-pointer border-0 bg-transparent p-0 text-left font-sans text-[15.5px] font-extrabold text-navy underline decoration-lime decoration-[3px] underline-offset-[5px]"
+                          className="min-h-11 min-w-11 cursor-pointer border-0 bg-transparent p-0 text-left font-sans text-[15.5px] font-extrabold text-navy underline decoration-lime decoration-[3px] underline-offset-[5px]"
                         >
                           {cable.name}
                           <span className="sr-only"> (abrir ficha técnica)</span>

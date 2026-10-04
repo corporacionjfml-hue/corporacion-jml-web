@@ -20,6 +20,17 @@ export function serializeQuote(quote: StoredQuote): string {
   return JSON.stringify({ v: 1, items: quote.items, buyerType: quote.buyerType });
 }
 
+/** True when `raw` is a JSON object (shape is validated later by `parseStoredQuote`). */
+export function isQuotePayload(raw: string | null): raw is string {
+  if (!raw) return false;
+  try {
+    const data: unknown = JSON.parse(raw);
+    return typeof data === "object" && data !== null && !Array.isArray(data);
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Reads persisted data defensively: corrupted JSON or wrong shapes yield an
  * empty quote; unknown cable ids and duplicates are dropped; quantities are

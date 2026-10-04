@@ -4,6 +4,34 @@ export interface CompanyPhone {
   whatsapp: string;
 }
 
+/**
+ * PENDING DOMAIN. Documented placeholder used for canonical URLs, Open Graph
+ * and the sitemap while NEXT_PUBLIC_SITE_URL is unset. It is intentionally
+ * unresolvable (.invalid) so it can never be mistaken for a real site.
+ */
+export const PENDING_SITE_URL = "https://PENDING-DOMAIN.invalid";
+
+/** Normalized origin (lowercase host, no trailing slash) or "" when unset or invalid. */
+function readSiteOrigin(raw: string | undefined): string {
+  const value = (raw ?? "").trim();
+  if (!value) return "";
+  try {
+    return new URL(value).origin;
+  } catch {
+    return "";
+  }
+}
+
+const configuredSiteUrl = readSiteOrigin(process.env.NEXT_PUBLIC_SITE_URL);
+
+/** Absolute site origin without trailing slash. */
+export const siteUrl: string = configuredSiteUrl || new URL(PENDING_SITE_URL).origin;
+/** True only when a real domain was provided through NEXT_PUBLIC_SITE_URL. */
+export const siteUrlConfigured: boolean = configuredSiteUrl !== "";
+
+/** GA4 measurement id (G-XXXXXXX). Analytics is disabled while empty. */
+export const gaId: string = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
+
 export const company = {
   name: "CORPORACION J & F SAC",
   slogan: "Siempre Hay Opción",

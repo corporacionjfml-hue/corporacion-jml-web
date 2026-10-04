@@ -34,7 +34,7 @@ export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
         <Link
           href="/"
           aria-label={`${company.name}, ir al inicio`}
-          className="text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
+          className="inline-flex min-h-11 items-center text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
         >
           <Logo />
         </Link>

@@ -13,6 +13,7 @@ import { findCable } from "@/lib/quote/catalog";
 import { addManyItems, removeItem, upsertItem } from "@/lib/quote/items";
 import {
   EMPTY_QUOTE,
+  isQuotePayload,
   parseStoredQuote,
   QUOTE_STORAGE_KEY,
   serializeQuote,
@@ -70,6 +71,19 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
     setBuyerType(stored.buyerType);
     setHydrated(true);
     /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
+
+  // Cross-tab sync. Non-destructive: a cleared key or a corrupt payload never wipes this tab,
+  // and valid payloads go through the same defensive parser as hydration.
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== QUOTE_STORAGE_KEY || !isQuotePayload(event.newValue)) return;
+      const next = parseStoredQuote(event.newValue);
+      setItems(next.items);
+      setBuyerType(next.buyerType);
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
 
   useEffect(() => {

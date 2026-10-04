@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Outfit } from "next/font/google";
-import { company } from "@/data/company";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { company, siteUrl } from "@/data/company";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CableSheetProvider } from "@/components/catalog/CableSheetProvider";
@@ -24,8 +25,17 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  // Placeholder origin until NEXT_PUBLIC_SITE_URL is configured (see README).
+  metadataBase: new URL(siteUrl),
   title: `${company.name} | Catálogo de cables eléctricos`,
   description: `Catálogo de cables eléctricos de ${company.name}. ${company.slogan}: elige el cable correcto y cotiza por WhatsApp.`,
+  applicationName: company.name,
+  openGraph: {
+    type: "website",
+    locale: "es_PE",
+    siteName: company.name,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
@@ -44,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Saltar al contenido
         </a>
+        <GoogleAnalytics />
         <QuoteProvider>
           <CableSheetProvider>
             <UtilBar />

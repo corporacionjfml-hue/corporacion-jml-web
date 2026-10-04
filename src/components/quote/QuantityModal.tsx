@@ -53,6 +53,8 @@ function QuantityDialog({ cableId }: { cableId: string }) {
 
   const current = clampQuantity(parseQuantityInput(draft), unit);
   const atMin = current <= rule.min;
+  const atMax = current >= rule.max;
+  const maxLength = String(rule.max).length;
 
   const commit = () => {
     setQuantity(cableId, current);
@@ -119,10 +121,13 @@ function QuantityDialog({ cableId }: { cableId: string }) {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="iconbtn shrink-0 text-[22px] font-bold disabled:cursor-not-allowed disabled:opacity-40"
+            className="iconbtn shrink-0 text-[22px] font-bold aria-disabled:cursor-not-allowed aria-disabled:opacity-40"
             aria-label="Disminuir cantidad"
-            disabled={atMin}
-            onClick={() => step(-1)}
+            // aria-disabled (not disabled) keeps focus inside the dialog at the minimum.
+            aria-disabled={atMin}
+            onClick={() => {
+              if (!atMin) step(-1);
+            }}
           >
             −
           </button>
@@ -135,14 +140,18 @@ function QuantityDialog({ cableId }: { cableId: string }) {
             autoComplete="off"
             aria-describedby={hintId}
             value={draft}
-            onChange={(e) => setDraft(e.target.value.replace(/\D/g, ""))}
+            maxLength={maxLength}
+            onChange={(e) => setDraft(e.target.value.replace(/\D/g, "").slice(0, maxLength))}
             onBlur={() => setDraft(String(current))}
           />
           <button
             type="button"
-            className="iconbtn shrink-0 text-[22px] font-bold"
+            className="iconbtn shrink-0 text-[22px] font-bold aria-disabled:cursor-not-allowed aria-disabled:opacity-40"
             aria-label="Aumentar cantidad"
-            onClick={() => step(1)}
+            aria-disabled={atMax}
+            onClick={() => {
+              if (!atMax) step(1);
+            }}
           >
             +
           </button>

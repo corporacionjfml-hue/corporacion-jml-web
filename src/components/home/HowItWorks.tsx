@@ -43,7 +43,7 @@ export function HowItWorks() {
               <div className="flex items-center justify-between">
                 <span
                   aria-hidden="true"
-                  className="font-mono text-[52px] font-semibold leading-none text-lime"
+                  className="font-mono text-[52px] font-semibold leading-none text-[#639a22]"
                 >
                   {step.number}
                 </span>

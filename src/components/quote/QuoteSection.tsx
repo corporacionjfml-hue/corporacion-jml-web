@@ -5,6 +5,7 @@ import { useId, useRef, type KeyboardEvent } from "react";
 import { useCableSheet } from "@/components/catalog/CableSheetProvider";
 import { Icon } from "@/components/ui/Icon";
 import { company, telHref } from "@/data/company";
+import { trackEvent } from "@/lib/analytics";
 import { categoryColors } from "@/lib/catalog/categories";
 import { findCable } from "@/lib/quote/catalog";
 import { buildQuoteUrl, formatQuantity } from "@/lib/quote/message";
@@ -73,7 +74,7 @@ function BuyerTypeToggle() {
         })}
       </div>
       {buyerType === null && (
-        <p className="m-0 text-[13.5px] text-lime">
+        <p className="m-0 text-[13.5px] text-lime-hover">
           Elige una opción y la incluimos en tu mensaje.
         </p>
       )}
@@ -124,7 +125,7 @@ function QuoteList() {
               <button
                 type="button"
                 onClick={() => sheet.open(cable.id)}
-                className="flex min-h-11 min-w-0 flex-1 basis-[160px] cursor-pointer flex-col justify-center gap-0.5 border-0 bg-transparent p-0 text-left font-[inherit] text-white"
+                className="flex min-h-11 min-w-11 flex-1 basis-[160px] cursor-pointer flex-col justify-center gap-0.5 border-0 bg-transparent p-0 text-left font-[inherit] text-white"
               >
                 <span className="text-[18px] font-extrabold">{cable.name}</span>
                 <span className="text-[13px] text-on-navy-3">{cable.fullName}</span>
@@ -161,6 +162,12 @@ function QuoteList() {
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-lime btn-lg text-[17px]"
+          onClick={() =>
+            trackEvent("quote_sent", {
+              item_count: items.length,
+              buyer_type: buyerType ?? "sin_definir",
+            })
+          }
         >
           <Icon name="whatsapp" size={22} />
           Enviar lista por WhatsApp
@@ -185,7 +192,7 @@ export function QuoteSection() {
           />
           <div className="relative flex min-w-0 flex-col gap-5">
             <div className="flex flex-col gap-3">
-              <span className="kicker self-start text-lime">Tu cotización</span>
+              <span className="kicker self-start text-lime-hover">Tu cotización</span>
               <h2 className="h2 text-white">Envíanos tu lista y te cotizamos hoy</h2>
               <p className="m-0 text-[17px] leading-[1.6] text-on-navy-2">
                 Arma tu lista con el asistente o con el botón “+ Cotizar” de cada cable.{" "}

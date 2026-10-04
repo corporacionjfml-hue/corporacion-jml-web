@@ -146,10 +146,15 @@ export function findPriority(id: PriorityId): PriorityOption {
   return option;
 }
 
-/** Step-2 candidates: every cable installable in the chosen place, in catalog order. */
+/**
+ * Step-2 candidates: every cable installable in the chosen place, in catalog
+ * order. Defensive: when no cable carries the tag, the whole catalog is
+ * returned so the assistant never dead-ends on an empty list.
+ */
 export function getPlaceCandidates(cables: readonly Cable[], placeId: PlaceId): Cable[] {
   const { tag } = findPlace(placeId);
-  return cables.filter((cable) => cable.tags.installation.includes(tag));
+  const tagged = cables.filter((cable) => cable.tags.installation.includes(tag));
+  return tagged.length > 0 ? tagged : [...cables];
 }
 
 export interface Recommendation {
@@ -158,7 +163,11 @@ export interface Recommendation {
   fallback: boolean;
 }
 
-/** Narrows the place candidates by priority; falls back to all of them when none match. */
+/**
+ * Narrows the place candidates by priority; falls back to all of them when none
+ * match. `getPlaceCandidates` already guarantees a non-empty list for a
+ * non-empty catalog.
+ */
 export function getRecommendation(
   cables: readonly Cable[],
   placeId: PlaceId,

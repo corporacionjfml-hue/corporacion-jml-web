@@ -3,7 +3,7 @@ import { Logo } from "@/components/ui/Logo";
 import { company, telHref } from "@/data/company";
 import { navItems } from "./navItems";
 
-const linkClass = "text-ink no-underline hover:text-lime-dark";
+const linkClass = "inline-flex min-h-11 items-center text-ink no-underline hover:text-lime-dark";
 
 export function Footer() {
   return (
@@ -13,7 +13,7 @@ export function Footer() {
           <Link
             href="/"
             aria-label={`${company.name}, ir al inicio`}
-            className="self-start text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
+            className="inline-flex min-h-11 items-center self-start text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
           >
             <Logo />
           </Link>
@@ -26,8 +26,8 @@ export function Footer() {
           </span>
         </div>
 
-        <div className="flex flex-col gap-2.5 text-[14.5px]">
-          <span className="kicker">Navegación</span>
+        <div className="flex flex-col gap-0.5 text-[14.5px]">
+          <span className="kicker mb-1.5">Navegación</span>
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className={linkClass}>
               {item.label}
@@ -35,8 +35,8 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-2.5 text-[14.5px] text-ink">
-          <span className="kicker">Contacto</span>
+        <div className="flex flex-col gap-0.5 text-[14.5px] text-ink">
+          <span className="kicker mb-1.5">Contacto</span>
           {company.phones.map((phone) => (
             <a key={phone.whatsapp} href={telHref(phone.whatsapp)} className={linkClass}>
               {phone.display}

@@ -43,7 +43,11 @@ async function postToEndpoint(endpoint: string, body: Record<string, string>): P
   }
 }
 
-/** Opens WhatsApp in a new tab. Popup blockers may refuse it; the UI always keeps a link too. */
+/**
+ * Opens WhatsApp in a new tab. Only call it synchronously inside the submit
+ * event (before any await); popup blockers may still refuse it, so the UI
+ * always keeps a visible link too.
+ */
 function openWhatsApp(url: string) {
   try {
     window.open(url, "_blank", "noopener,noreferrer");
@@ -111,7 +115,7 @@ export function CallbackForm() {
     if (delivered) {
       setStatus("sent");
     } else {
-      openWhatsApp(url);
+      // No window.open after an await (popup blockers): the result view offers a tap target.
       setStatus("failed");
     }
     focusResult();
@@ -120,6 +124,7 @@ export function CallbackForm() {
   function reset() {
     setValues(EMPTY_CALLBACK);
     setErrors({});
+    setWaUrl(whatsappUrl(company.quotesWhatsApp));
     setStatus("idle");
   }
 

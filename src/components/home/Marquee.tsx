@@ -5,7 +5,7 @@ function Names({ hidden = false }: { hidden?: boolean }) {
   return (
     <ul
       aria-hidden={hidden || undefined}
-      className={`m-0 flex list-none items-center p-0${hidden ? "marquee-dup" : ""}`}
+      className={`m-0 flex list-none items-center p-0${hidden ? " marquee-dup" : ""}`}
     >
       {cables.map((cable, index) => (
         <li key={cable.id} className="flex items-center">

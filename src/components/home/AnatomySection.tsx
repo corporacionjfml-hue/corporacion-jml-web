@@ -140,7 +140,7 @@ export function AnatomySection() {
     >
       <div className="wrap flex flex-col gap-10">
         <div className="flex max-w-[780px] flex-col gap-3.5">
-          <span className="kicker self-start text-lime">Anatomía · NA2XY 3-1x120 mm²</span>
+          <span className="kicker self-start text-lime-hover">Anatomía · NA2XY 3-1x120 mm²</span>
           <h2 className="h2 text-white">Conoce lo que hay dentro de cada cable</h2>
           <p className="m-0 text-[18px] leading-[1.6] text-on-navy-3">
             Cada ficha detalla construcción, normas y datos por calibre. Así se ve un cable de
