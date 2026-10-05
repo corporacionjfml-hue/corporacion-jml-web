@@ -23,7 +23,13 @@ export function HashScroll() {
     };
 
     const jumpToHash = () => {
-      const id = decodeURIComponent(window.location.hash.slice(1));
+      const raw = window.location.hash.slice(1);
+      let id = raw;
+      try {
+        id = decodeURIComponent(raw);
+      } catch {
+        // Malformed percent-escape: fall back to the raw id instead of aborting the jump.
+      }
       const target = id ? document.getElementById(id) : null;
       if (!target) return;
       renderAll();
@@ -34,7 +40,9 @@ export function HashScroll() {
       const link = (event.target as Element | null)?.closest?.("a[href*='#']");
       if (!(link instanceof HTMLAnchorElement)) return;
       const url = new URL(link.href, window.location.href);
-      if (url.origin === window.location.origin && url.pathname === window.location.pathname && url.hash.length > 1) {
+      // Same-page and cross-page (client-side) links alike: the head script does not rerun on a
+      // client navigation, so the destination page must render its deferred sections up front too.
+      if (url.origin === window.location.origin && url.hash.length > 1) {
         renderAll();
       }
     };
