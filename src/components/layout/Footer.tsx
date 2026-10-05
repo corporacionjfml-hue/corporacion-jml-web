@@ -37,6 +37,9 @@ export function Footer() {
 
         <div className="flex flex-col gap-0.5 text-[14.5px] text-ink">
           <span className="kicker mb-1.5">Contacto</span>
+          <strong className="py-1 font-extrabold">{company.name}</strong>
+          <span className="py-1">RUC: {company.ruc}</span>
+          <span className="py-1">{company.address}</span>
           {company.phones.map((phone) => (
             <a key={phone.whatsapp} href={telHref(phone.whatsapp)} className={linkClass}>
               {phone.display}
@@ -45,10 +48,8 @@ export function Footer() {
           <a href={`mailto:${company.email}`} className={linkClass}>
             {company.email}
           </a>
-          <span>{company.address}</span>
-          <span>RUC {company.ruc}</span>
           {/* Social handle is provisional until the client confirms it. */}
-          <span>
+          <span className="py-1">
             {company.social.handle}
             {company.social.pendingConfirmation && (
               <span className="text-mute-2"> (por confirmar)</span>
@@ -57,7 +58,7 @@ export function Footer() {
         </div>
       </div>
       <div className="wrap mt-7 border-t border-line-soft pt-5 text-[12.5px] text-mute-2">
-        © 2026 {company.name} · Datos técnicos referenciales según fichas de fabricantes.
+        © 2026 {company.name} · RUC {company.ruc} · Datos técnicos referenciales según fichas de fabricantes.
       </div>
     </footer>
   );

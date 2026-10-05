@@ -13,9 +13,13 @@ import type { BuyerType } from "@/lib/quote/types";
 import { CallbackForm } from "./CallbackForm";
 import { useQuote } from "./QuoteProvider";
 
-const BUYER_OPTIONS: { value: BuyerType; label: string }[] = [
-  { value: "mayorista", label: "Mayorista" },
-  { value: "minorista", label: "Minorista" },
+const BUYER_OPTIONS: { value: BuyerType; label: string; hint: string }[] = [
+  {
+    value: "mayorista",
+    label: "Mayorista",
+    hint: "Por volumen: obras, ferreterías, distribuidores y empresas",
+  },
+  { value: "minorista", label: "Minorista", hint: "Para tu casa, taller o un trabajo puntual" },
 ];
 
 const contactLink =
@@ -43,10 +47,10 @@ function BuyerTypeToggle() {
 
   return (
     <div className="flex flex-col gap-2.5">
-      <span id={labelId} className="text-[16px] font-bold text-white">
+      <span id={labelId} className="text-[18px] font-extrabold text-white">
         ¿Qué tipo de compra deseas hacer?
       </span>
-      <div role="radiogroup" aria-labelledby={labelId} className="flex flex-wrap gap-2.5">
+      <div role="radiogroup" aria-labelledby={labelId} className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {BUYER_OPTIONS.map((option, index) => {
           const checked = buyerType === option.value;
           return (
@@ -61,14 +65,15 @@ function BuyerTypeToggle() {
               tabIndex={checked || (buyerType === null && index === 0) ? 0 : -1}
               onClick={() => setBuyerType(option.value)}
               onKeyDown={(event) => onKeyDown(event, index)}
-              className={`inline-flex min-h-12 min-w-[140px] flex-1 items-center justify-center gap-2 rounded-md border-2 px-5 text-[15px] font-bold transition-colors sm:flex-none ${
-                checked
-                  ? "border-lime bg-lime text-ink"
-                  : "border-white/35 bg-transparent text-white hover:border-white hover:bg-white/10"
+              className={`flex min-h-11 cursor-pointer flex-col items-start gap-1 rounded-lg border-2 px-4 py-3.5 text-left font-[inherit] text-white ${
+                checked ? "border-lime bg-lime/16" : "border-white/22 bg-white/6 hover:border-lime"
               }`}
             >
-              {checked && <Icon name="check" size={16} strokeWidth={2.8} />}
-              {option.label}
+              <span className="flex items-center gap-2 text-[17px] font-extrabold">
+                {option.label}
+                {checked && <Icon name="check" size={16} strokeWidth={2.8} />}
+              </span>
+              <span className="text-[13.5px] leading-[1.45] text-on-navy-2">{option.hint}</span>
             </button>
           );
         })}
@@ -225,6 +230,12 @@ export function QuoteSection() {
                   <Icon name="mail" size={20} className="text-lime" strokeWidth={1.8} />
                   {company.email}
                 </a>
+              </li>
+              <li>
+                <span className="inline-flex min-h-11 items-center gap-2 text-on-navy-2">
+                  <Icon name="pin" size={20} className="text-lime" strokeWidth={1.8} />
+                  {company.address}
+                </span>
               </li>
             </ul>
           </div>
