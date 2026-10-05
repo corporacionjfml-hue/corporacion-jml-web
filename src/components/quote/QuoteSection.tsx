@@ -183,7 +183,7 @@ function QuoteList() {
 
 export function QuoteSection() {
   return (
-    <section id="cotizar" aria-label="Tu cotización" className="scroll-mt-20 pb-[88px] pt-14">
+    <section id="cotizar" aria-label="Tu cotización" className="defer-render scroll-mt-20 pb-[88px] pt-14">
       <div className="wrap">
         <div className="relative grid grid-cols-1 gap-7 overflow-hidden rounded-band bg-navy p-[clamp(24px,4.5vw,56px)] lg:grid-cols-2">
           <div

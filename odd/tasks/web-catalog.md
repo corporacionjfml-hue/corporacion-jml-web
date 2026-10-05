@@ -26,6 +26,7 @@ Open client decisions (use provisional markers): form destination email (corpora
 - [x] T5 Home top: hero, 3-question assistant, marquee, "Cómo funciona", advisory band. Route: delegated writer.
 - [x] T6 Quote section + comparison table + anatomy section + contact form behavior. Route: delegated writer.
 - [x] T7 Detail pages `/cables/[slug]`, SEO (metadata, sitemap, robots, OG), responsive/accessibility pass. Route: delegated writer.
+- [x] T8 Home performance: cut TBT (~540 ms) / JS and animation cost on the home page without changing visuals or closed decisions. Target: mobile Lighthouse perf >= 90. Route: delegated writer (reading prepares the write).
 
 ## Acceptance
 Matches the design values from the spec; responsive from 360 px; no "Corporación JML", no coeperperu, no prices, no PDF downloads; build exports static output.
@@ -44,6 +45,7 @@ Matches the design values from the spec; responsive from 360 px; no "Corporació
 - Review T6 (medium, 1144 lines): granted, approved, acknowledged, boundary 8bc9cfe. Advisory follow-ups for T7: CallbackForm opens WhatsApp popup after an await (popup blockers on mobile Safari: open synchronously or use a link); stale waUrl after form reset; 'flexible' column derived by heuristic in comparison.ts (validate with client data); callback.ts untested.
 - T7 done: 15 detail pages, SEO (sitemap 16 urls, robots, icon, OG, BreadcrumbList + LocalBusiness JSON-LD), GA4 hook (needs NEXT_PUBLIC_GA_ID), README config guide, all review follow-ups fixed. Lighthouse mobile: detail 95/100/100/100; home 66-76/100/100/100 (perf limited by TBT ~540ms, follow-up: reduce JS/animation cost). Not verified: GA4 real ID, real form POST, cross-tab with real windows.
 - Review T7 (medium, 1385 lines): granted, approved, acknowledged, boundary 9ae3892. Fixed after review: JSON-LD '<' escape was a no-op (now \u003c). Remaining advisory: no committed tests for clamp max / seo helpers (TDD off).
+- T8 done: lazy-loaded CableSheetModal and QuantityModal (next/dynamic), content-visibility:auto on catalog/comparison/anatomy/quote sections. Lighthouse mobile home (same machine, local static serve): baseline 90-93 perf, TBT 94-140 ms, LCP ~3.0 s; after 89-94 typical, TBT 66-130 ms, LCP ~3.0 s; runs are noisy (occasional 73-86 outliers from CPU contention, TBT 330-560 ms) so the earlier 66-76 was largely noise. A11y/BP/SEO stay 100, CLS 0. Tried and reverted: preload:false on IBM Plex Mono (worsened FCP). Not changed (visual risk): infinite border-radius morph on hero blob and background-size swipe are non-composited. Headless checks: no overflow at 360, sheet modal, quantity modal, tray, assistant OK. Commit: see git log (perf(home)).
 
 ## Next step
 (Final review done.) then ask user: email/RUC/address, Nosotros+Galería, form service, domain, logo; home performance tuning.

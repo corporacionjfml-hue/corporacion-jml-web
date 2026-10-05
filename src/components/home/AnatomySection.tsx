@@ -135,7 +135,7 @@ export function AnatomySection() {
     <section
       id="anatomia"
       aria-label="Anatomía de un cable"
-      className="relative scroll-mt-20 overflow-hidden py-[88px]"
+      className="defer-render relative scroll-mt-20 overflow-hidden py-[88px]"
       style={GRID_BG}
     >
       <div className="wrap flex flex-col gap-10">

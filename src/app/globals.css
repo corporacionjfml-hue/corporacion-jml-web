@@ -292,6 +292,12 @@ body {
     animation: var(--animate-swipe);
   }
 
+  /* Skip rendering work for below-the-fold sections until they near the viewport. */
+  .defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
   /* Entrance animation with optional stagger */
   .rise {
     animation: var(--animate-rise);

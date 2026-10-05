@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import {
   createContext,
   useCallback,
@@ -9,7 +10,11 @@ import {
   type ReactNode,
 } from "react";
 import { findCable } from "@/lib/quote/catalog";
-import { CableSheetModal } from "./CableSheetModal";
+
+// Loaded on first open so the sheet (tables, focus trap) stays out of the initial bundle.
+const CableSheetModal = dynamic(() =>
+  import("./CableSheetModal").then((m) => m.CableSheetModal),
+);
 
 interface CableSheetContextValue {
   /** Id of the cable whose technical sheet is open, or null. */

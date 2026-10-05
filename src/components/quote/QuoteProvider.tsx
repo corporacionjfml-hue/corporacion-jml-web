@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import {
   createContext,
   useCallback,
@@ -19,8 +20,12 @@ import {
   serializeQuote,
 } from "@/lib/quote/storage";
 import type { BuyerType, QuoteItem } from "@/lib/quote/types";
-import { QuantityModal } from "./QuantityModal";
 import { QuoteTray } from "./QuoteTray";
+
+// Loaded on first use so the dialog logic stays out of the initial bundle.
+const QuantityModal = dynamic(() =>
+  import("./QuantityModal").then((m) => m.QuantityModal),
+);
 
 interface QuoteContextValue {
   items: QuoteItem[];
@@ -153,7 +158,7 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
   return (
     <QuoteContext.Provider value={value}>
       {children}
-      <QuantityModal />
+      {modalCableId && <QuantityModal />}
       <QuoteTray />
     </QuoteContext.Provider>
   );

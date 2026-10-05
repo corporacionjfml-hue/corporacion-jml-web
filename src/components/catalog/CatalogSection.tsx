@@ -40,7 +40,7 @@ export function CatalogSection() {
       : `${visible.length} cables encontrados`;
 
   return (
-    <section id="catalogo" className="scroll-mt-20 pb-10 pt-14">
+    <section id="catalogo" className="defer-render scroll-mt-20 pb-10 pt-14">
       <div className="wrap flex flex-col gap-[26px]">
         <div className="flex max-w-[780px] flex-col gap-3.5">
           <span className="kicker self-start">Catálogo</span>

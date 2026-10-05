@@ -48,7 +48,7 @@ export function ComparisonSection() {
   const { open } = useCableSheet();
 
   return (
-    <section id="comparativa" className="scroll-mt-20 pb-10 pt-[72px]">
+    <section id="comparativa" className="defer-render scroll-mt-20 pb-10 pt-[72px]">
       <div className="wrap flex flex-col gap-[30px]">
         <div className="flex max-w-[780px] flex-col gap-3.5">
           <span className="kicker self-start">Comparativa</span>
