@@ -217,6 +217,7 @@ export function Assistant() {
                 </button>
                 <QuoteButton
                   cable={cable}
+                  tone="navy"
                   className="min-h-11 shrink-0 px-3.5 text-[13.5px] whitespace-nowrap"
                 />
               </li>

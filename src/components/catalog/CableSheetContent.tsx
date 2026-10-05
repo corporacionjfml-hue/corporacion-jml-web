@@ -297,6 +297,12 @@ function SpecTableView({
   const columnCount = table.columns.length;
   const minWidth = columnCount === 2 ? 400 : 140 + (columnCount - 1) * 100;
   const caption = `${cable.name} · ${variant.label}`;
+  // Column proportions of the mockup grid: 2 cols 1fr/1.4fr, otherwise 1.3fr + 1fr each.
+  const weights = table.columns.map((_, index) =>
+    columnCount === 2 ? (index === 0 ? 1 : 1.4) : index === 0 ? 1.3 : 1,
+  );
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+  const columnShares = weights.map((weight) => (weight / totalWeight) * 100);
 
   return (
     <div className="overflow-hidden rounded-xl border border-line">
@@ -310,7 +316,12 @@ function SpecTableView({
         aria-label={`Tabla técnica: ${caption}`}
         tabIndex={0}
       >
-        <table className="sheet-table" style={{ minWidth }}>
+        <table className="sheet-table table-fixed [&_tbody_th]:shadow-none" style={{ minWidth }}>
+          <colgroup>
+            {table.columns.map((column, index) => (
+              <col key={column} style={{ width: `${columnShares[index]}%` }} />
+            ))}
+          </colgroup>
           <thead>
             <tr>
               {table.columns.map((column) => (
