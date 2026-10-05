@@ -213,6 +213,10 @@ body {
     clip-path: inset(50%);
     white-space: nowrap;
   }
+  /* The mockup relies on the font's natural line height wherever it sets none. */
+  html {
+    line-height: normal;
+  }
   a {
     color: var(--color-navy);
   }
@@ -651,7 +655,8 @@ body {
     font-weight: 400;
     transition: background 0.15s;
   }
-  .sheet-table tbody tr:nth-child(even) > * {
+  /* The mockup counts the header row, so its first data row is the tinted one. */
+  .sheet-table tbody tr:nth-child(odd) > * {
     background: var(--color-row-alt);
   }
   .sheet-table tbody tr:hover > * {

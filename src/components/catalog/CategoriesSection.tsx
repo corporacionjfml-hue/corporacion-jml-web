@@ -65,7 +65,7 @@ export function CategoriesSection() {
                       {meta.shortName}
                     </span>
                     <span className="text-[14.5px] leading-[1.5] text-mute">
-                      {members.map((cable) => cable.name).join(", ")}
+                      {members.map((cable) => cable.name).join(" · ")}
                     </span>
                   </div>
                 </a>
