@@ -79,6 +79,8 @@
 
   /* Motion */
   --ease-design: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* The mockup's transitions use the CSS default `ease`, not Tailwind's own curve. */
+  --default-transition-timing-function: ease;
   --animate-rise: rise 0.8s var(--ease-design) both;
   --animate-swipe: swipe 1s 0.4s var(--ease-design) both;
   --animate-spin-slow: spin 60s linear infinite;
@@ -300,6 +302,10 @@ body {
   .defer-render {
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
+  }
+  /* Set by HashScroll while an in-page jump settles, so anchors land on real section heights. */
+  html[data-render-all] .defer-render {
+    content-visibility: visible;
   }
 
   /* Entrance animation with optional stagger */

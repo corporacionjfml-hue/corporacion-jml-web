@@ -31,7 +31,7 @@ function OptionButton({ icon, title, hint, onPick }: OptionButtonProps) {
     <button
       type="button"
       onClick={onPick}
-      className="group flex min-h-[112px] cursor-pointer flex-col items-start gap-2 rounded-xl border-2 border-transparent bg-page p-3.5 text-left text-ink transition-[border-color,background,transform] duration-200 hover:border-navy hover:bg-white motion-safe:hover:-translate-y-0.5"
+      className="group flex min-h-[112px] cursor-pointer flex-col items-start gap-2 rounded-xl border-2 border-transparent bg-page p-3.5 text-left text-ink transition-[border-color,background,translate] duration-200 hover:border-navy hover:bg-white motion-safe:hover:-translate-y-0.5"
     >
       <span className="inline-flex size-10 items-center justify-center rounded-md bg-navy text-lime transition-colors duration-200 group-hover:bg-lime group-hover:text-ink">
         <Icon name={icon} size={21} strokeWidth={1.8} />

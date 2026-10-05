@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Outfit } from "next/font/google";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { company, siteUrl } from "@/data/company";
 import { Footer } from "@/components/layout/Footer";
+import { HashScroll } from "@/components/layout/HashScroll";
 import { Header } from "@/components/layout/Header";
 import { CableSheetProvider } from "@/components/catalog/CableSheetProvider";
 import { QuoteProvider } from "@/components/quote/QuoteProvider";
@@ -46,7 +47,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${outfit.variable} ${plexMono.variable}`}>
+    <html lang="es" className={`${outfit.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* With a hash in the URL, render deferred sections up front so the native jump lands right (see HashScroll). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "if(location.hash)document.documentElement.setAttribute('data-render-all','')",
+          }}
+        />
+      </head>
       <body>
         <a
           href="#contenido"
@@ -55,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Saltar al contenido
         </a>
         <GoogleAnalytics />
+        <HashScroll />
         <QuoteProvider>
           <CableSheetProvider>
             <UtilBar />

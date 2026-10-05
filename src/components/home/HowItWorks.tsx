@@ -38,7 +38,7 @@ export function HowItWorks() {
           {steps.map((step) => (
             <li
               key={step.number}
-              className="flex flex-col gap-3.5 rounded-tile border border-line bg-white p-[26px] transition-[transform,box-shadow] duration-300 hover:shadow-tile-hover motion-safe:hover:-translate-y-1.5"
+              className="flex flex-col gap-3.5 rounded-tile border border-line bg-white p-[26px] transition-[translate,box-shadow] duration-300 hover:shadow-tile-hover motion-safe:hover:-translate-y-1.5"
             >
               <div className="flex items-center justify-between">
                 <span

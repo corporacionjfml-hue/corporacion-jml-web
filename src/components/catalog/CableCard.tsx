@@ -24,7 +24,7 @@ export function CableCard({ cable, index }: { cable: Cable; index: number }) {
   const features = getCardFeatures(cable);
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-card border border-line bg-white transition-[transform,box-shadow,border-color] duration-[350ms] ease-design hover:border-line-hover hover:shadow-card-hover motion-safe:hover:-translate-y-2">
+    <article className="group flex flex-col overflow-hidden rounded-card border border-line bg-white transition-[translate,box-shadow,border-color] duration-[350ms] [transition-timing-function:var(--ease-design),ease,ease] hover:border-line-hover hover:shadow-card-hover motion-safe:hover:-translate-y-2">
       <div
         className="relative flex min-h-[124px] items-center justify-between px-5 py-[18px]"
         style={{ background: colors.bg }}

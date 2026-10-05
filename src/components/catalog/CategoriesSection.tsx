@@ -36,7 +36,7 @@ export function CategoriesSection() {
                     e.preventDefault();
                     jumpToCategory(category.id);
                   }}
-                  className="group relative flex h-full min-h-[220px] flex-col justify-between gap-[26px] overflow-hidden rounded-tile border border-line bg-white p-[26px] text-ink no-underline transition-[transform,box-shadow,border-color] duration-300 ease-design hover:border-navy hover:text-ink hover:shadow-tile-hover motion-safe:hover:-translate-y-1.5"
+                  className="group relative flex h-full min-h-[220px] flex-col justify-between gap-[26px] overflow-hidden rounded-tile border border-line bg-white p-[26px] text-ink no-underline transition-[translate,box-shadow,border-color] duration-300 [transition-timing-function:var(--ease-design),ease,ease] hover:border-navy hover:text-ink hover:shadow-tile-hover motion-safe:hover:-translate-y-1.5"
                 >
                   <div
                     aria-hidden="true"
