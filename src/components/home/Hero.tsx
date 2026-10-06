@@ -1,5 +1,4 @@
 import { Icon } from "@/components/ui/Icon";
-import { cables } from "@/data/cables";
 import { company, whatsappUrl } from "@/data/company";
 import { Assistant } from "./Assistant";
 import { CableDiscs } from "./CableDiscs";
@@ -32,12 +31,6 @@ export function Hero() {
       <div className="wrap relative pb-20 pt-14">
         <div className="grid grid-cols-1 items-center gap-11 hero4:grid-cols-[1.05fr_.95fr] hero4:gap-14">
           <div className="flex flex-col gap-[26px]">
-            <span className="rise inline-flex items-center gap-2.5 self-start rounded-full border border-line bg-white py-2 pl-2 pr-3.5 text-sm font-semibold text-ink">
-              <span className="rounded-full bg-navy px-2.5 py-1 text-xs font-bold text-lime">
-                NUEVO
-              </span>
-              Catálogo técnico 2026 · {cables.length} tipos de cable
-            </span>
             <h1 className="h1 rise d1">
               Cables eléctricos de alta calidad <span className="mark">para cada proyecto</span>
             </h1>

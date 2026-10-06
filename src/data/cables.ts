@@ -35,6 +35,7 @@ export const cables: Cable[] = [
     name: "CAAI",
     fullName: "Cable CAAI — Cables Autosoportados AL 90°C, 0.6/1(1.2) kV XLPE",
     categoryId: "autosoportados",
+    image: "/images/cables/caai.webp",
     description:
       "Cable autosoportado de aluminio aislado con XLPE para distribución secundaria aérea urbana y rural. No requiere el uso de aisladores.",
     standards: ["NTP 370.254", "NTP-IEC 60228", "NTP 370.258"],
@@ -131,6 +132,7 @@ export const cables: Cable[] = [
     fullName:
       "Cable CAAI-S — Cables Autosoportados AL 90°C, 0.6/1(1.2) kV XLPE con Soporte de Acero",
     categoryId: "autosoportados",
+    image: "/images/cables/caai-s.webp",
     description:
       "Cable autosoportado de aluminio aislado con XLPE con portante de acero galvanizado para distribución secundaria aérea urbana y rural con alta resistencia mecánica.",
     standards: ["NTP 370.254", "NTP-IEC 60228", "ASTM A 475"],
@@ -227,6 +229,7 @@ export const cables: Cable[] = [
     name: "AAAC",
     fullName: "Conductores AAAC — All Aluminum Alloy Conductor (Aleación de Aluminio 6201)",
     categoryId: "conductores-aluminio",
+    image: "/images/cables/aaac.webp",
     description:
       "Conductor de aleación de aluminio para líneas aéreas de transmisión y distribución primaria o secundaria. Permite grandes vanos.",
     standards: ["NTP 370.258", "ASTM B 398 M", "ASTM B 399 M"],
@@ -287,6 +290,7 @@ export const cables: Cable[] = [
     name: "NA2XY",
     fullName: "Cable NA2XY — Aluminio / XLPE / PVC, 0.6/1 kV (Distribución Subterránea)",
     categoryId: "distribucion-subterranea",
+    image: "/images/cables/na2xy.webp",
     description:
       "Cable de aluminio con aislamiento XLPE y cubierta PVC para distribución subterránea en ternas (3 conductores separados).",
     standards: ["IEC 60502-1"],
@@ -345,6 +349,7 @@ export const cables: Cable[] = [
     name: "Concéntrico de aluminio",
     fullName: "Cable Concéntrico de Aluminio — 0.6/1 kV, XLPE + PVC",
     categoryId: "distribucion-subterranea",
+    image: "/images/cables/concentrico-aluminio.webp",
     description:
       "Cable concéntrico de aluminio 0.6/1 kV con aislamiento XLPE y funda exterior de PVC. Sección 2x6 mm².",
     standards: ["IEC 60502-1"],
@@ -371,6 +376,7 @@ export const cables: Cable[] = [
     name: "LSOH-90+",
     fullName: "Cable LSOH-90+ — Libre de Halógenos, 450/750 V, 90°C",
     categoryId: "baja-tension",
+    image: "/images/cables/lsoh-90.webp",
     description:
       "Cable libre de halógenos, de baja emisión y opacidad de humos, que no propaga el incendio. Apto para ambientes húmedos o secos.",
     standards: ["Resolución Ministerial N° 175-2008-MEM/DM (CNE Perú)"],
@@ -438,6 +444,7 @@ export const cables: Cable[] = [
     name: "NH-90",
     fullName: "Cable NH-90 — Libre de Halógenos, 450/750 V, 90°C",
     categoryId: "baja-tension",
+    image: "/images/cables/nh-90.webp",
     description:
       "Cable libre de halógenos para ambientes poco ventilados, con reducción de humos y sin gases tóxicos ni corrosivos en caso de incendio.",
     standards: [],
@@ -494,6 +501,7 @@ export const cables: Cable[] = [
     name: "THW-90 BH",
     fullName: "ECOSAFE THW-90 BH — PVC Mejorado, 450/750 V, 90°C",
     categoryId: "baja-tension",
+    image: "/images/cables/thw-90-bh.webp",
     description:
       "Cable de PVC mejorado con baja emisión de humos, autoextinguible, para ambientes húmedos o secos.",
     standards: [],
@@ -562,6 +570,7 @@ export const cables: Cable[] = [
     name: "N2XOH Unipolar",
     fullName: "Cable N2XOH 0.6/1 kV Unipolar — Libre de Halógenos",
     categoryId: "baja-tension",
+    image: "/images/cables/n2xoh-unipolar.webp",
     description:
       "Cable unipolar libre de halógenos 0.6/1 kV para redes eléctricas de distribución de baja tensión, en ambientes secos, húmedos o mojados.",
     standards: ["IEC 60228"],
@@ -628,6 +637,7 @@ export const cables: Cable[] = [
     name: "N2XOH Doble/Triple",
     fullName: "Cable N2XOH 0.6/1 kV Doble o Triple — Libre de Halógenos",
     categoryId: "baja-tension",
+    image: "/images/cables/n2xoh-doble-triple.webp",
     description:
       "Cable multipolar libre de halógenos 0.6/1 kV para redes de distribución de baja tensión y lugares de alta afluencia de público.",
     standards: [],
@@ -698,6 +708,7 @@ export const cables: Cable[] = [
     name: "TTRF-70",
     fullName: "Cable TTRF-70 / TTRF-70 NLT-PC — Flexible Doméstico / Herramientas, 300/500 V",
     categoryId: "baja-tension",
+    image: "/images/cables/ttrf-70.webp",
     description:
       "Cable flexible para electrodomésticos y herramientas portátiles, en servicio no muy pesado, en lugares secos o húmedos.",
     standards: [],
@@ -792,6 +803,7 @@ export const cables: Cable[] = [
     name: "Cable para soldadura",
     fullName: "Cable para Soldadura (Welding Cable Heavy Duty) — 1000 V, 80°C",
     categoryId: "especiales",
+    image: "/images/cables/soldadura.webp",
     description:
       "Cable de cobre flexible muy finamente trenzado para soldadura eléctrica por arco, en corriente alterna o continua.",
     standards: [],
@@ -844,6 +856,7 @@ export const cables: Cable[] = [
     name: "Cobre desnudo",
     fullName: "Conductor de Cobre Desnudo — Para Conexiones a Tierra",
     categoryId: "especiales",
+    image: "/images/cables/cobre-desnudo.webp",
     description:
       "Conductor de cobre desnudo para conexiones a tierra, con alta resistencia a la corrosión.",
     standards: [],
@@ -938,6 +951,7 @@ export const cables: Cable[] = [
     name: "NPT (STO)",
     fullName: "Cable NPT (STO) — Sumergibles / Flexibles, 0.6/1(1.2) kV",
     categoryId: "especiales",
+    image: "/images/cables/npt.webp",
     description:
       "Cable flexible para redes de baja tensión y alimentación de bombas sumergidas en pozos de elevación de agua y otros usos industriales.",
     standards: ["IEC 60332-1-2", "ASTM G 155"],
@@ -1034,6 +1048,7 @@ export const cables: Cable[] = [
     name: "GPT-3 Automotriz",
     fullName: "Cable GPT-3 Automotriz — 300 V, 80°C",
     categoryId: "especiales",
+    image: "/images/cables/gpt-3.webp",
     description:
       "Cable automotriz flexible de dimensiones reducidas, apto para vehículos y tableros con poco espacio disponible.",
     standards: ["IEC 60332-1-2"],

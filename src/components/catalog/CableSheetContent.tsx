@@ -80,23 +80,36 @@ export function CableSheetContent({
 
   return (
     <div className={`flex flex-col gap-8 ${className}`}>
-      {specs.length > 0 && (
-        <dl className="m-0 grid grid-cols-2 gap-2.5 md:grid-cols-4">
-          {specs.map(([label, value]) => (
-            <div
-              key={label}
-              className="rounded-xl border border-line-soft bg-page p-4"
-            >
-              <dt className="font-mono text-[10.5px] uppercase tracking-[1.2px] text-mute-2">
-                {label}
-              </dt>
-              <dd className="m-0 mt-1.5 text-[20px] font-extrabold text-navy">
-                {value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      )}
+      <div className="flex flex-col gap-6 md:flex-row md:items-stretch md:gap-6">
+        {cable.image && (
+          <div className="flex h-[130px] w-[130px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line-soft bg-page p-2 shadow-sm md:h-auto md:w-[150px]">
+            <img
+              src={cable.image}
+              alt={`Cable ${cable.name}`}
+              className="h-full w-full object-contain"
+              width={150}
+              height={150}
+            />
+          </div>
+        )}
+        {specs.length > 0 && (
+          <dl className="m-0 grid grow grid-cols-2 gap-2.5 sm:grid-cols-4">
+            {specs.map(([label, value]) => (
+              <div
+                key={label}
+                className="flex flex-col justify-center rounded-xl border border-line-soft bg-page p-4"
+              >
+                <dt className="font-mono text-[10.5px] uppercase tracking-[1.2px] text-mute-2">
+                  {label}
+                </dt>
+                <dd className="m-0 mt-1.5 text-[20px] font-extrabold text-navy">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 gap-[30px] band:grid-cols-2">
         <section className="flex flex-col gap-3.5">

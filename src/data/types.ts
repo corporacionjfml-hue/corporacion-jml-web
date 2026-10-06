@@ -72,6 +72,7 @@ export interface Cable {
   name: string;
   fullName: string;
   categoryId: CategoryId;
+  image?: string;
   description: string;
   standards: string[];
   certificates?: string[];

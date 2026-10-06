@@ -45,8 +45,23 @@ export function CableCard({ cable, index }: { cable: Cable; index: number }) {
             {meta.shortName}
           </span>
         </div>
-        <div className="transition-transform duration-700 ease-design motion-safe:group-hover:rotate-[60deg] motion-safe:group-hover:scale-[1.08]">
-          <CableSectionArt fill={colors.fill} />
+        <div className="flex items-center justify-center transition-transform duration-700 ease-design motion-safe:group-hover:scale-105">
+          {cable.image ? (
+            <div className="relative flex h-[92px] w-[92px] items-center justify-center overflow-hidden rounded-2xl bg-white/95 p-1.5 shadow-sm ring-1 ring-black/5 backdrop-blur-sm">
+              <img
+                src={cable.image}
+                alt={`Cable ${cable.name}`}
+                className="h-full w-full object-contain transition-transform duration-500 motion-safe:group-hover:scale-110"
+                loading="lazy"
+                width={92}
+                height={92}
+              />
+            </div>
+          ) : (
+            <div className="transition-transform duration-700 ease-design motion-safe:group-hover:rotate-[60deg] motion-safe:group-hover:scale-[1.08]">
+              <CableSectionArt fill={colors.fill} />
+            </div>
+          )}
         </div>
       </div>
 
