@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuote } from "@/components/quote/QuoteProvider";
+import { preloadQuantityModal, useQuote } from "@/components/quote/QuoteProvider";
 import { Icon } from "@/components/ui/Icon";
 import type { Cable } from "@/data/types";
 
@@ -24,6 +24,8 @@ export function QuoteButton({
       type="button"
       className={`btn btn-added ${compact} ${className}`}
       onClick={() => openQuantity(cable.id)}
+      onPointerEnter={preloadQuantityModal}
+      onFocus={preloadQuantityModal}
     >
       <Icon name="check" size={15} strokeWidth={2.6} />
       Agregado
@@ -38,6 +40,8 @@ export function QuoteButton({
           : "btn-lime"
       } ${compact} ${className}`}
       onClick={() => openQuantity(cable.id)}
+      onPointerEnter={preloadQuantityModal}
+      onFocus={preloadQuantityModal}
     >
       + Cotizar<span className="sr-only"> {cable.name}</span>
     </button>

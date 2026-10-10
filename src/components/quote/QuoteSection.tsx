@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useRef, type KeyboardEvent } from "react";
 import { useCableSheet } from "@/components/catalog/CableSheetProvider";
 import { Icon } from "@/components/ui/Icon";
-import { company, telHref } from "@/data/company";
+import { company, generalGreeting, whatsappUrl } from "@/data/company";
 import { trackEvent } from "@/lib/analytics";
 import { categoryColors } from "@/lib/catalog/categories";
 import { findCable } from "@/lib/quote/catalog";
@@ -209,7 +209,12 @@ export function QuoteSection() {
             <ul className="m-0 flex list-none flex-wrap gap-x-[18px] gap-y-1 p-0 pt-2 text-[15px]">
               {company.phones.map((phone) => (
                 <li key={phone.whatsapp}>
-                  <a href={telHref(phone.whatsapp)} className={`${contactLink} font-bold text-white`}>
+                  <a
+                    href={whatsappUrl(phone.whatsapp, generalGreeting)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${contactLink} font-bold text-white`}
+                  >
                     <Icon name="phone" size={20} className="text-lime" strokeWidth={1.8} />
                     {phone.display}
                   </a>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-import { company, telHref } from "@/data/company";
+import { company, generalGreeting, whatsappUrl } from "@/data/company";
 import { navItems } from "./navItems";
 
 const linkClass = "inline-flex min-h-11 items-center text-ink no-underline hover:text-lime-dark";
@@ -41,7 +41,13 @@ export function Footer() {
           <span className="py-1">RUC: {company.ruc}</span>
           <span className="py-1">{company.address}</span>
           {company.phones.map((phone) => (
-            <a key={phone.whatsapp} href={telHref(phone.whatsapp)} className={linkClass}>
+            <a
+              key={phone.whatsapp}
+              href={whatsappUrl(phone.whatsapp, generalGreeting)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
               {phone.display}
             </a>
           ))}

@@ -22,10 +22,25 @@ import {
 import type { BuyerType, QuoteItem } from "@/lib/quote/types";
 import { QuoteTray } from "./QuoteTray";
 
+const loadQuantityModal = () => import("./QuantityModal").then((m) => m.QuantityModal);
+
+/** Warms the lazy chunk (hover/focus on "+ Cotizar") so the dialog opens without a wait. */
+export const preloadQuantityModal = () => {
+  // Best-effort warm-up: a failure surfaces when dynamic() really loads the modal.
+  loadQuantityModal().catch(() => {});
+};
+
 // Loaded on first use so the dialog logic stays out of the initial bundle.
-const QuantityModal = dynamic(() =>
-  import("./QuantityModal").then((m) => m.QuantityModal),
-);
+const QuantityModal = dynamic(loadQuantityModal, {
+  loading: () => (
+    <div
+      role="status"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(20,38,58,.55)] text-[16px] font-semibold text-white backdrop-blur-[8px]"
+    >
+      Cargando…
+    </div>
+  ),
+});
 
 interface QuoteContextValue {
   items: QuoteItem[];

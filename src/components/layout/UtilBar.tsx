@@ -1,4 +1,4 @@
-import { company, telHref } from "@/data/company";
+import { company, generalGreeting, whatsappUrl } from "@/data/company";
 
 /** Top info bar, only from 768px. No website link by project decision. */
 export function UtilBar() {
@@ -12,7 +12,9 @@ export function UtilBar() {
         </span>
         <span className="flex gap-[22px]">
           <a
-            href={telHref(phone.whatsapp)}
+            href={whatsappUrl(phone.whatsapp, generalGreeting)}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-semibold text-white no-underline hover:text-white"
           >
             {phone.display}
