@@ -1,5 +1,5 @@
 import { Icon } from "@/components/ui/Icon";
-import { company, whatsappUrl } from "@/data/company";
+import { company, generalGreeting, whatsappUrl } from "@/data/company";
 
 const [primaryPhone] = company.phones;
 
@@ -29,7 +29,7 @@ export function AdvisoryBand() {
               Usar el asistente <Icon name="arrow" size={16} strokeWidth={2.2} />
             </a>
             <a
-              href={whatsappUrl(company.quotesWhatsApp)}
+              href={whatsappUrl(company.quotesWhatsApp, generalGreeting)}
               target="_blank"
               rel="noopener"
               className="btn border-2 border-ink bg-transparent text-ink hover:text-ink"
