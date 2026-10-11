@@ -7,7 +7,8 @@ const linkClass = "inline-flex min-h-11 items-center text-ink no-underline hover
 
 export function Footer() {
   return (
-    <footer className="border-t border-line-soft bg-white pb-8 pt-11">
+    // Extra bottom room on small screens so the floating WhatsApp button never covers the legal line.
+    <footer className="border-t border-line-soft bg-white pb-24 pt-11 md:pb-8">
       <div className="wrap grid grid-cols-1 gap-7 md:grid-cols-[2fr_1fr_1fr]">
         <div className="flex flex-col gap-3.5">
           <Link
