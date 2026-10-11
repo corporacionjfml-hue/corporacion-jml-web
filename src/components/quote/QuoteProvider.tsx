@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -137,7 +138,24 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
     [items],
   );
 
-  const trayVisible = hydrated && touched && items.length > 0 && modalCableId === null;
+  // The tray points at the quote section, so it only gets in the way while that section is on screen.
+  const [quoteSectionInView, setQuoteSectionInView] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => {
+    const section = document.getElementById("cotizar");
+    if (!section) {
+      // Pages without the quote section (e.g. cable detail): nothing to avoid.
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reset when navigating away
+      setQuoteSectionInView(false);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => setQuoteSectionInView(entry.isIntersecting));
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const trayVisible =
+    hydrated && touched && items.length > 0 && modalCableId === null && !quoteSectionInView;
 
   const value = useMemo<QuoteContextValue>(
     () => ({
