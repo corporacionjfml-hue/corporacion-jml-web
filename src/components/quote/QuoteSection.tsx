@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, type KeyboardEvent } from "react";
 import { useCableSheet } from "@/components/catalog/CableSheetProvider";
 import { Icon } from "@/components/ui/Icon";
 import { company, generalGreeting, whatsappUrl } from "@/data/company";
@@ -9,83 +8,11 @@ import { trackEvent } from "@/lib/analytics";
 import { categoryColors } from "@/lib/catalog/categories";
 import { findCable } from "@/lib/quote/catalog";
 import { buildQuoteUrl, formatQuantity } from "@/lib/quote/message";
-import type { BuyerType } from "@/lib/quote/types";
 import { CallbackForm } from "./CallbackForm";
 import { useQuote } from "./QuoteProvider";
 
-const BUYER_OPTIONS: { value: BuyerType; label: string; hint: string }[] = [
-  {
-    value: "mayorista",
-    label: "Mayorista",
-    hint: "Por volumen: obras, ferreterías, distribuidores y empresas",
-  },
-  { value: "minorista", label: "Minorista", hint: "Para tu casa, taller o un trabajo puntual" },
-];
-
 const contactLink =
   "inline-flex min-h-11 items-center gap-2 text-on-navy-2 no-underline hover:text-white";
-
-function BuyerTypeToggle() {
-  const { buyerType, setBuyerType } = useQuote();
-  const labelId = useId();
-  const refs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  // Radio-group keyboard model: arrows move and select, only one tab stop.
-  const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    const move =
-      event.key === "ArrowRight" || event.key === "ArrowDown"
-        ? 1
-        : event.key === "ArrowLeft" || event.key === "ArrowUp"
-          ? -1
-          : 0;
-    if (!move) return;
-    event.preventDefault();
-    const next = (index + move + BUYER_OPTIONS.length) % BUYER_OPTIONS.length;
-    setBuyerType(BUYER_OPTIONS[next].value);
-    refs.current[next]?.focus();
-  };
-
-  return (
-    <div className="flex flex-col gap-2.5">
-      <span id={labelId} className="text-[18px] font-extrabold text-white">
-        ¿Qué tipo de compra deseas hacer?
-      </span>
-      <div role="radiogroup" aria-labelledby={labelId} className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-        {BUYER_OPTIONS.map((option, index) => {
-          const checked = buyerType === option.value;
-          return (
-            <button
-              key={option.value}
-              ref={(node) => {
-                refs.current[index] = node;
-              }}
-              type="button"
-              role="radio"
-              aria-checked={checked}
-              tabIndex={checked || (buyerType === null && index === 0) ? 0 : -1}
-              onClick={() => setBuyerType(option.value)}
-              onKeyDown={(event) => onKeyDown(event, index)}
-              className={`flex min-h-11 cursor-pointer flex-col items-start gap-1 rounded-lg border-2 px-4 py-3.5 text-left font-[inherit] text-white ${
-                checked ? "border-lime bg-lime/16" : "border-white/22 bg-white/6 hover:border-lime"
-              }`}
-            >
-              <span className="flex items-center gap-2 text-[17px] font-extrabold">
-                {option.label}
-                {checked && <Icon name="check" size={16} strokeWidth={2.8} />}
-              </span>
-              <span className="text-[13.5px] leading-[1.45] text-on-navy-2">{option.hint}</span>
-            </button>
-          );
-        })}
-      </div>
-      {buyerType === null && (
-        <p className="m-0 text-[13.5px] text-lime-hover">
-          Elige una opción y la incluimos en tu mensaje.
-        </p>
-      )}
-    </div>
-  );
-}
 
 function QuoteList() {
   const { items, openQuantity, remove, buyerType } = useQuote();
@@ -137,7 +64,7 @@ function QuoteList() {
                 <span className="sr-only"> (abrir ficha técnica)</span>
               </button>
               <div className="flex items-center gap-2">
-                <span className="rounded-full bg-white/12 px-3 py-1.5 font-mono text-[13.5px] font-semibold text-white">
+                <span className="whitespace-nowrap rounded-full bg-white/12 px-3 py-1.5 font-mono text-[13.5px] font-semibold text-white">
                   {formatQuantity(item)}
                 </span>
                 <button
@@ -204,7 +131,6 @@ export function QuoteSection() {
                 {company.slogan}.
               </p>
             </div>
-            <BuyerTypeToggle />
             <QuoteList />
             <ul className="m-0 flex list-none flex-wrap gap-x-[18px] gap-y-1 p-0 pt-2 text-[15px]">
               {company.phones.map((phone) => (
