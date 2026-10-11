@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 const ATTR = "data-render-all";
 const RELEASE_MS = 2000;
-
 /**
  * Sections marked `.defer-render` use `content-visibility: auto`, so the ones above an anchor
  * target still have their placeholder height when the browser computes the scroll position, and
@@ -22,8 +21,8 @@ export function HashScroll() {
       timer = setTimeout(() => root.removeAttribute(ATTR), RELEASE_MS);
     };
 
-    const jumpToHash = () => {
-      const raw = window.location.hash.slice(1);
+    const jumpToHash = (hash = window.location.hash) => {
+      const raw = hash.slice(1);
       let id = raw;
       try {
         id = decodeURIComponent(raw);
@@ -44,14 +43,20 @@ export function HashScroll() {
       // client navigation, so the destination page must render its deferred sections up front too.
       if (url.origin === window.location.origin && url.hash.length > 1) {
         renderAll();
+        // The URL already ends in this hash (a previous jump left it there): no hashchange fires
+        // and the router does not scroll, so the link would look dead. Jump manually.
+        if (url.pathname === window.location.pathname && url.hash === window.location.hash) {
+          setTimeout(() => jumpToHash(url.hash), 0);
+        }
       }
     };
 
     if (window.location.hash) renderAll();
-    window.addEventListener("hashchange", jumpToHash);
+    const onHashChange = () => jumpToHash();
+    window.addEventListener("hashchange", onHashChange);
     document.addEventListener("click", onClick, true);
     return () => {
-      window.removeEventListener("hashchange", jumpToHash);
+      window.removeEventListener("hashchange", onHashChange);
       document.removeEventListener("click", onClick, true);
       clearTimeout(timer);
     };

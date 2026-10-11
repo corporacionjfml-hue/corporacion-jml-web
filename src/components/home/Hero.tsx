@@ -17,7 +17,7 @@ export function Hero() {
     <section
       id="asistente"
       aria-label="Presentación y asistente"
-      className="relative scroll-mt-[78px] overflow-hidden bg-page"
+      className="relative scroll-mt-19.5 overflow-hidden bg-page"
     >
       <div
         aria-hidden="true"
