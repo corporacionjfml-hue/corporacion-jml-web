@@ -62,6 +62,7 @@ export const cables: Cable[] = [
       priority: ["intemperie", "resistencia-mecanica"],
     },
     unit: "metros",
+    gaugeRange: "Desde 16 mm² hasta 120 mm²",
     variants: [
       {
         id: "dimensional",
