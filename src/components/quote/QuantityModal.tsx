@@ -51,7 +51,11 @@ function QuantityDialog({ cableId }: { cableId: string }) {
 
   if (!cable) return null;
 
-  const current = clampQuantity(parseQuantityInput(draft), unit);
+  const typed = parseQuantityInput(draft);
+  const current = clampQuantity(typed, unit);
+  // The typed value is snapped to the nearest valid one; say so before it is saved. Values below
+  // the minimum are skipped: they are usually a number still being typed ("1" on its way to "150").
+  const adjusted = Number.isFinite(typed) && typed >= rule.min && typed !== current;
   const atMin = current <= rule.min;
   const atMax = current >= rule.max;
   const maxLength = String(rule.max).length;
@@ -161,6 +165,9 @@ function QuantityDialog({ cableId }: { cableId: string }) {
         </div>
         <p id={hintId} className="m-0 mt-2 text-[13.5px] text-mute-2">
           {rule.hint}
+        </p>
+        <p role="status" className="m-0 mt-1 min-h-[1.4em] text-[13.5px] font-semibold text-warn">
+          {adjusted ? `Se agregará ${current} ${unit}: ${typed} no es una cantidad válida.` : ""}
         </p>
 
         <div className="mt-6 flex flex-col gap-2.5">
