@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# planning / agent files (local only)
+/odd/
+AGENTS.md
+CLAUDE.md
