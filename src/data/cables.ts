@@ -379,7 +379,7 @@ export const cables: Cable[] = [
     name: "LSOH-90+",
     fullName: "Cable LSOH-90+ — Libre de Halógenos, 450/750 V, 90°C",
     categoryId: "baja-tension",
-    brand: "INDECO",
+    brand: "CELSA",
     image: "/images/cables/lsoh-90.webp",
     description:
       "Cable libre de halógenos, de baja emisión y opacidad de humos, que no propaga el incendio. Apto para ambientes húmedos o secos.",
@@ -506,7 +506,7 @@ export const cables: Cable[] = [
     name: "THW-90 BH",
     fullName: "ECOSAFE THW-90 BH — PVC Mejorado, 450/750 V, 90°C",
     categoryId: "baja-tension",
-    brand: "INDECO",
+    brand: "CELSA",
     image: "/images/cables/thw-90-bh.webp",
     description:
       "Cable de PVC mejorado con baja emisión de humos, autoextinguible, para ambientes húmedos o secos.",
@@ -716,7 +716,7 @@ export const cables: Cable[] = [
     name: "TTRF-70",
     fullName: "Cable TTRF-70 / TTRF-70 NLT-PC — Flexible Doméstico / Herramientas, 300/500 V",
     categoryId: "baja-tension",
-    brand: "INDECO",
+    brand: "CELSA",
     image: "/images/cables/ttrf-70.webp",
     description:
       "Cable flexible para electrodomésticos y herramientas portátiles, en servicio no muy pesado, en lugares secos o húmedos.",
@@ -812,7 +812,7 @@ export const cables: Cable[] = [
     name: "Cable para soldadura",
     fullName: "Cable para Soldadura (Welding Cable Heavy Duty) — 1000 V, 80°C",
     categoryId: "especiales",
-    brand: "INDECO",
+    brand: "CELSA",
     image: "/images/cables/soldadura.webp",
     description:
       "Cable de cobre flexible muy finamente trenzado para soldadura eléctrica por arco, en corriente alterna o continua.",
