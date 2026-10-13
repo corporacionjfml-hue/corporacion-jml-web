@@ -211,7 +211,7 @@ export function CatalogSection() {
           <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-[22px] p-0">
             {visible.map((cable) => (
               <li key={cable.id} className="flex *:w-full">
-                <CableCard cable={cable} index={cables.indexOf(cable)} />
+                <CableCard cable={cable} />
               </li>
             ))}
           </ul>
