@@ -66,17 +66,20 @@ export type CableVariant = {
   notes?: string[];
 } & VariantTable;
 
+export type Brand = "COEPER" | "CELSA" | "INDECO";
+
 export interface Cable {
   id: string;
   slug: string;
   name: string;
   fullName: string;
   categoryId: CategoryId;
+  /** Commercial brand shown to customers. */
+  brand: Brand;
   image?: string;
   description: string;
   standards: string[];
   certificates?: string[];
-  manufacturer?: string;
   voltage?: string;
   temperature?: Temperatures;
   construction: string[];

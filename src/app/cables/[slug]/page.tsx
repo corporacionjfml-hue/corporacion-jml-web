@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CableSheetContent } from "@/components/catalog/CableSheetContent";
+import { BrandBadge } from "@/components/catalog/BrandBadge";
 import { QuoteButton } from "@/components/catalog/QuoteButton";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -104,12 +105,15 @@ export default async function CablePage({ params }: CablePageProps) {
         <article className="mt-2 overflow-hidden rounded-panel bg-white shadow-panel">
           <header className="border-b-[5px] border-lime bg-navy px-6 pb-7 pt-8">
             <div className="flex min-w-0 flex-col gap-3">
-              <span
-                className="self-start rounded-full px-[11px] py-[5px] text-[12px] font-bold text-ink"
-                style={{ background: colors.fill }}
-              >
-                {category?.name}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className="self-start rounded-full px-[11px] py-[5px] text-[12px] font-bold text-ink"
+                  style={{ background: colors.fill }}
+                >
+                  {category?.name}
+                </span>
+                <BrandBadge brand={cable.brand} onDark />
+              </div>
               <h1 className="m-0 text-[clamp(32px,5.4vw,56px)] font-extrabold leading-none tracking-[-1px] text-white">
                 {cable.name}
               </h1>

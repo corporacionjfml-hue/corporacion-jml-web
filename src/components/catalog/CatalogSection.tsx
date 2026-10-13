@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { Icon } from "@/components/ui/Icon";
+import { brands, brandOrder } from "@/data/brands";
 import { cables, categories } from "@/data/cables";
 import { categoryColors, categoryMeta } from "@/lib/catalog/categories";
 import { filterCables } from "@/lib/catalog/search";
@@ -12,26 +13,37 @@ import { useCatalogFilter } from "./CatalogFilterProvider";
 const COUNT_CLASS = "font-mono text-[12px]";
 
 export function CatalogSection() {
-  const { query, category, setQuery, setCategory, reset } = useCatalogFilter();
+  const { query, category, brand, setQuery, setCategory, setBrand, reset } = useCatalogFilter();
 
-  // Chip counts reflect the search only, so users see where results live.
-  const searched = useMemo(() => filterCables(cables, query, "all"), [query]);
+  // Chip counts reflect the search plus the other filter, so users see where results live.
+  const byCategoryList = useMemo(
+    () => filterCables(cables, query, "all", brand),
+    [query, brand],
+  );
+  const byBrandList = useMemo(
+    () => filterCables(cables, query, category, "all"),
+    [query, category],
+  );
   const counts = useMemo(() => {
     const byCategory = new Map<string, number>();
-    for (const cable of searched) {
+    for (const cable of byCategoryList) {
       byCategory.set(
         cable.categoryId,
         (byCategory.get(cable.categoryId) ?? 0) + 1,
       );
     }
     return byCategory;
-  }, [searched]);
+  }, [byCategoryList]);
+  const brandCounts = useMemo(() => {
+    const byBrand = new Map<string, number>();
+    for (const cable of byBrandList) {
+      byBrand.set(cable.brand, (byBrand.get(cable.brand) ?? 0) + 1);
+    }
+    return byBrand;
+  }, [byBrandList]);
   const visible = useMemo(
-    () =>
-      category === "all"
-        ? searched
-        : searched.filter((cable) => cable.categoryId === category),
-    [searched, category],
+    () => filterCables(cables, query, category, brand),
+    [query, category, brand],
   );
 
   const resultText =
@@ -88,11 +100,11 @@ export function CatalogSection() {
                 <span
                   className={`${COUNT_CLASS} rounded-full bg-lime px-2 py-0.5 text-ink`}
                 >
-                  {searched.length}
+                  {byCategoryList.length}
                 </span>
               ) : (
                 <span className={`${COUNT_CLASS} text-mute-2`}>
-                  {searched.length}
+                  {byCategoryList.length}
                 </span>
               )}
             </button>
@@ -126,6 +138,62 @@ export function CatalogSection() {
                       {count}
                     </span>
                   )}
+                </button>
+              );
+            })}
+          </div>
+          <div
+            role="group"
+            aria-label="Filtrar por marca"
+            className="flex items-center gap-2.5 overflow-x-auto pb-1 [scrollbar-width:thin]"
+          >
+            <span className="shrink-0 font-mono text-[11px] uppercase tracking-[1.2px] text-mute-2">
+              Marca
+            </span>
+            <button
+              type="button"
+              aria-pressed={brand === "all"}
+              className={`chip ${brand === "all" ? "chip-on" : "chip-off"}`}
+              onClick={() => setBrand("all")}
+            >
+              Todas
+            </button>
+            {brandOrder.map((id) => {
+              const active = brand === id;
+              const count = brandCounts.get(id) ?? 0;
+              const featured = brands[id].featured;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={active}
+                  className={`chip ${active ? "chip-on" : "chip-off"} ${
+                    featured
+                      ? active
+                        ? "ring-2 ring-lime"
+                        : "border-navy font-extrabold text-navy"
+                      : ""
+                  }`}
+                  onClick={() => setBrand(id)}
+                >
+                  <span
+                    className={`font-mono uppercase ${
+                      featured
+                        ? "text-[14px] font-extrabold tracking-[1.6px]"
+                        : "text-[12.5px] tracking-[1.2px]"
+                    }`}
+                  >
+                    {brands[id].label}
+                  </span>
+                  <span
+                    className={`${COUNT_CLASS} ${
+                      active
+                        ? "rounded-full bg-lime px-2 py-0.5 text-ink"
+                        : "text-mute-2"
+                    }`}
+                  >
+                    {count}
+                  </span>
                 </button>
               );
             })}

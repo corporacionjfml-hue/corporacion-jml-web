@@ -19,7 +19,8 @@ export function buildQuoteMessage(
   const buyer = buyerType ? ` (compra ${buyerType})` : "";
   const lines = [`Hola ${company.name}, quisiera cotizar${buyer}:`];
   for (const item of items) {
-    const name = findCable(item.cableId)?.name ?? item.cableId;
+    const cable = findCable(item.cableId);
+    const name = cable ? `${cable.name} (${cable.brand})` : item.cableId;
     lines.push(`- ${name}: ${formatQuantity(item)}`);
   }
   const extraLines = [

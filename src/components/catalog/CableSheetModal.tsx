@@ -8,6 +8,7 @@ import { company, whatsappUrl } from "@/data/company";
 import type { Cable } from "@/data/types";
 import { categoryColors } from "@/lib/catalog/categories";
 import { findCable } from "@/lib/quote/catalog";
+import { BrandBadge } from "./BrandBadge";
 import { CableSheetContent } from "./CableSheetContent";
 import { QuoteButton } from "./QuoteButton";
 
@@ -96,12 +97,15 @@ function SheetDialog({
       >
         <div className="sticky top-0 z-[2] flex items-start justify-between gap-4 border-b-[5px] border-lime bg-navy px-6 pb-5 pt-6">
           <div className="flex min-w-0 flex-col gap-2">
-            <span
-              className="self-start rounded-full px-[11px] py-[5px] text-[12px] font-bold text-ink"
-              style={{ background: colors.fill }}
-            >
-              {category?.name}
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span
+                className="self-start rounded-full px-[11px] py-[5px] text-[12px] font-bold text-ink"
+                style={{ background: colors.fill }}
+              >
+                {category?.name}
+              </span>
+              <BrandBadge brand={cable.brand} onDark />
+            </div>
             <h2
               id={titleId}
               className="m-0 text-[clamp(28px,4.4vw,44px)] font-extrabold leading-none tracking-[-1px] text-white"

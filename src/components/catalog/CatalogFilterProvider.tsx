@@ -8,13 +8,15 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { CategoryFilter } from "@/lib/catalog/search";
+import type { BrandFilter, CategoryFilter } from "@/lib/catalog/search";
 
 interface CatalogFilterValue {
   query: string;
   category: CategoryFilter;
+  brand: BrandFilter;
   setQuery: (query: string) => void;
   setCategory: (category: CategoryFilter) => void;
+  setBrand: (brand: BrandFilter) => void;
   /** Selects a category, clears the search and scrolls to the catalog toolbar. */
   jumpToCategory: (category: CategoryFilter) => void;
   reset: () => void;
@@ -35,14 +37,17 @@ export function useCatalogFilter(): CatalogFilterValue {
 export function CatalogFilterProvider({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<CategoryFilter>("all");
+  const [brand, setBrand] = useState<BrandFilter>("all");
 
   const reset = useCallback(() => {
     setQuery("");
     setCategory("all");
+    setBrand("all");
   }, []);
 
   const jumpToCategory = useCallback((next: CategoryFilter) => {
     setQuery("");
+    setBrand("all");
     setCategory(next);
     // Wait for the filtered grid to render so the scroll lands on the final layout.
     requestAnimationFrame(() => {
@@ -51,8 +56,17 @@ export function CatalogFilterProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ query, category, setQuery, setCategory, jumpToCategory, reset }),
-    [query, category, jumpToCategory, reset],
+    () => ({
+      query,
+      category,
+      brand,
+      setQuery,
+      setCategory,
+      setBrand,
+      jumpToCategory,
+      reset,
+    }),
+    [query, category, brand, jumpToCategory, reset],
   );
 
   return (
