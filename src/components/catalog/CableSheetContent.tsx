@@ -8,6 +8,7 @@ import {
   featureIcon,
   getGaugeRange,
 } from "@/lib/catalog/display";
+import { brands } from "@/data/brands";
 import { QuoteButton } from "./QuoteButton";
 
 const KICKER = "kicker m-0";
@@ -61,7 +62,7 @@ export function CableSheetContent({
     ["T° operación", temperature?.operation],
     ["T° emergencia", temperature?.emergency],
     ["Cortocircuito", temperature?.shortCircuit],
-    ["Fabricante", cable.manufacturer],
+    ["Marca", brands[cable.brand].label],
     ["Rango", getGaugeRange(cable)],
   ];
   const specs = specCandidates

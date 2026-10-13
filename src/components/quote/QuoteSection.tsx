@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { BrandBadge } from "@/components/catalog/BrandBadge";
 import { useCableSheet } from "@/components/catalog/CableSheetProvider";
 import { Icon } from "@/components/ui/Icon";
 import { company, generalGreeting, whatsappUrl } from "@/data/company";
@@ -59,7 +60,10 @@ function QuoteList() {
                 onClick={() => sheet.open(cable.id)}
                 className="flex min-h-11 min-w-11 flex-1 basis-[160px] cursor-pointer flex-col justify-center gap-0.5 border-0 bg-transparent p-0 text-left font-[inherit] text-white"
               >
-                <span className="text-[18px] font-extrabold">{cable.name}</span>
+                <span className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                  <span className="text-[18px] font-extrabold">{cable.name}</span>
+                  <BrandBadge brand={cable.brand} onDark />
+                </span>
                 <span className="text-[13px] text-on-navy-3">{cable.fullName}</span>
                 <span className="sr-only"> (abrir ficha técnica)</span>
               </button>

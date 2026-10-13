@@ -1,8 +1,10 @@
 import { categories } from "@/data/cables";
-import type { Cable, CategoryId } from "@/data/types";
+import { brands } from "@/data/brands";
+import type { Brand, Cable, CategoryId } from "@/data/types";
 import { categoryMeta } from "./categories";
 
 export type CategoryFilter = CategoryId | "all";
+export type BrandFilter = Brand | "all";
 
 /** Lowercase and strip diacritics so "halogenos" matches "Halógenos". */
 export function normalizeText(text: string): string {
@@ -23,7 +25,7 @@ function buildHaystack(cable: Cable): string {
     categoryMeta[cable.categoryId].shortName,
     cable.description,
     cable.voltage,
-    cable.manufacturer,
+    brands[cable.brand].label,
     cable.gaugeRange,
     cable.temperature?.operation,
     cable.temperature?.emergency,
@@ -75,10 +77,12 @@ export function filterCables(
   list: Cable[],
   query: string,
   category: CategoryFilter,
+  brand: BrandFilter = "all",
 ): Cable[] {
   return list.filter(
     (cable) =>
       (category === "all" || cable.categoryId === category) &&
+      (brand === "all" || cable.brand === brand) &&
       matchesQuery(cable, query),
   );
 }

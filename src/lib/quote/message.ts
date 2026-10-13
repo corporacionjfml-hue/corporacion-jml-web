@@ -1,3 +1,4 @@
+import { brands } from "@/data/brands";
 import { company, whatsappUrl } from "@/data/company";
 import { findCable } from "./catalog";
 import type { BuyerType, QuoteExtras, QuoteItem } from "./types";
@@ -19,7 +20,8 @@ export function buildQuoteMessage(
   const buyer = buyerType ? ` (compra ${buyerType})` : "";
   const lines = [`Hola ${company.name}, quisiera cotizar${buyer}:`];
   for (const item of items) {
-    const name = findCable(item.cableId)?.name ?? item.cableId;
+    const cable = findCable(item.cableId);
+    const name = cable ? `${cable.name} (${brands[cable.brand].label})` : item.cableId;
     lines.push(`- ${name}: ${formatQuantity(item)}`);
   }
   const extraLines = [

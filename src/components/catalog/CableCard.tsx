@@ -9,6 +9,7 @@ import {
   getCardFeatures,
   getRangeLabel,
 } from "@/lib/catalog/display";
+import { BrandBadge } from "./BrandBadge";
 import { CableSectionArt } from "./CableSectionArt";
 import { useCableSheet } from "./CableSheetProvider";
 import { QuoteButton } from "./QuoteButton";
@@ -67,6 +68,7 @@ export function CableCard({ cable, index }: { cable: Cable; index: number }) {
 
       <div className="flex grow flex-col gap-4 px-5 pb-[22px] pt-5">
         <div className="flex flex-col gap-1.5">
+          <BrandBadge brand={cable.brand} className="mb-1" />
           <h3 className="m-0 text-[28px] font-extrabold leading-[1.05] tracking-[-0.5px] text-ink">
             {cable.name}
           </h3>

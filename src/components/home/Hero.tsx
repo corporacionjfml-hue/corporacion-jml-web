@@ -5,10 +5,10 @@ import { CableDiscs } from "./CableDiscs";
 
 const quoteGreeting = `Hola ${company.name}, quisiera cotizar cables.`;
 
-/** Trust row. The manufacturer item is provisional copy until the client confirms it. */
+/** Trust row. The brands item names the client's three brands. */
 const trustItems = [
   { title: "NTP · IEC · ASTM", detail: "Normas de fabricación" },
-  { title: "Fabricantes certificados", detail: "Marcas de confianza" },
+  { title: "COEPER · CELSA · INDECO", detail: "Marcas de confianza" },
   { title: "Fichas técnicas", detail: "Tablas por calibre" },
 ] as const;
 
