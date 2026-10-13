@@ -50,8 +50,3 @@ export function applicationIcon(text: string): IconName {
   if (/tierra|línea|transmisión/.test(t)) return "tower";
   return "check";
 }
-
-/** Zero-padded position shown on the card ("01"). */
-export function formatIndex(index: number): string {
-  return String(index + 1).padStart(2, "0");
-}

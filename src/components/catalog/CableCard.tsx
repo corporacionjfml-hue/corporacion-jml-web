@@ -5,7 +5,6 @@ import type { Cable } from "@/data/types";
 import { categoryColors, categoryMeta } from "@/lib/catalog/categories";
 import {
   featureIcon,
-  formatIndex,
   getCardFeatures,
   getRangeLabel,
 } from "@/lib/catalog/display";
@@ -18,7 +17,7 @@ const SPEC_LABEL =
   "font-mono text-[10.5px] uppercase tracking-[1.2px] text-mute-2";
 const SPEC_VALUE = "mt-[3px] text-[18px] font-extrabold text-navy";
 
-export function CableCard({ cable, index }: { cable: Cable; index: number }) {
+export function CableCard({ cable }: { cable: Cable }) {
   const { open } = useCableSheet();
   const colors = categoryColors(cable.categoryId);
   const meta = categoryMeta[cable.categoryId];
@@ -27,17 +26,17 @@ export function CableCard({ cable, index }: { cable: Cable; index: number }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-card border border-line bg-white transition-[translate,box-shadow,border-color] duration-[350ms] [transition-timing-function:var(--ease-design),ease,ease] hover:border-line-hover hover:shadow-card-hover motion-safe:hover:-translate-y-2">
       <div
-        className="relative flex min-h-[124px] items-center justify-between px-5 py-[18px]"
+        className="relative flex min-h-[176px] items-center justify-between px-5 py-[18px]"
         style={{ background: colors.bg }}
       >
-        <div className="flex flex-col gap-2">
-          <span
-            aria-hidden="true"
-            className="font-mono text-[44px] font-semibold leading-none opacity-90"
+        <div className="flex min-w-0 flex-col gap-2">
+          <h3
+            className="m-0 text-[28px] font-extrabold leading-[1.05] tracking-[-0.5px]"
             style={{ color: colors.fg }}
           >
-            {formatIndex(index)}
-          </span>
+            {cable.name}
+          </h3>
+          <BrandBadge brand={cable.brand} />
           <span
             className="inline-flex items-center gap-1.5 self-start rounded-full bg-white px-2.5 py-[5px] text-[12px] font-bold"
             style={{ color: colors.fg }}
@@ -67,15 +66,9 @@ export function CableCard({ cable, index }: { cable: Cable; index: number }) {
       </div>
 
       <div className="flex grow flex-col gap-4 px-5 pb-[22px] pt-5">
-        <div className="flex flex-col gap-1.5">
-          <BrandBadge brand={cable.brand} className="mb-1" />
-          <h3 className="m-0 text-[28px] font-extrabold leading-[1.05] tracking-[-0.5px] text-ink">
-            {cable.name}
-          </h3>
-          <p className="m-0 line-clamp-3 text-[14px] leading-[1.45] text-mute">
-            {cable.description}
-          </p>
-        </div>
+        <p className="m-0 line-clamp-3 text-[14px] leading-[1.45] text-mute">
+          {cable.description}
+        </p>
 
         <dl className="m-0 grid grid-cols-2 overflow-hidden rounded-lg border border-line-soft">
           <div className="border-r border-line-soft px-3.5 py-3">
