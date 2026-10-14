@@ -18,7 +18,7 @@ Mientras estos valores no existan, el sitio compila y funciona, pero con marcado
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` (dominio real, p. ej. `https://midominio.pe`, sin barra final) | variable de entorno en el build | Sin definir: canonical, Open Graph y sitemap usan el marcador `https://PENDING-DOMAIN.invalid` (`PENDING_SITE_URL` en `company.ts`). No publicar así. |
 | `NEXT_PUBLIC_GA_ID` (GA4, `G-XXXXXXXXXX`) | variable de entorno en el build | Sin definir: Google Analytics no se carga. Con valor, se envía el evento `quote_sent` al enviar la lista por WhatsApp. |
-| Formulario "¿Prefieres que te llamemos?" | `company.form.endpoint` y `company.form.accessKey` en `src/data/company.ts` | Vacío: el formulario abre WhatsApp con los datos. Web3Forms (`https://api.web3forms.com/submit` + accessKey) o Formspree (`https://formspree.io/f/<id>`). |
+| Formulario "¿Prefieres que te llamemos?" | `company.form.endpoint` y `company.form.accessKey` en `src/data/company.ts` | Configurado con Web3Forms (`https://api.web3forms.com/submit` + accessKey); los mensajes llegan a corporacionjfml@gmail.com. Si `endpoint` queda vacío, el formulario abre WhatsApp con los datos. Al tener dominio, actualizar la Website URL en el panel de Web3Forms. |
 | Correo de destino del formulario | cuenta del servicio de formularios y `company.email` | Pendiente de confirmar `corporacionj@gmail.com` vs `corporacionjfml@`. |
 | Logo real (PNG/SVG) | `src/components/ui/Logo.tsx`, `src/app/icon.svg`, `src/app/opengraph-image.tsx` | Logo provisional dibujado en SVG (el cliente solo entregó `LOGO.pdf`). |
 | Usuario de redes | `company.social` en `src/data/company.ts` | `@CorporacionJML` por confirmar (`pendingConfirmation`). |
