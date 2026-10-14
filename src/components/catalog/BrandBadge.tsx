@@ -9,10 +9,15 @@ interface BrandBadgeProps {
 }
 
 /**
- * Text logo of a brand. The featured brand (INDECO) is filled and larger so it
- * stands out; the others are outlined and neutral.
+ * Clean typographic badge for cards and compact lists.
+ * Ensures 100% legibility and zero aspect-ratio distortion on any screen size.
+ * INDECO is highlighted with navy fill and lime accents.
  */
-export function BrandBadge({ brand, onDark = false, className = "" }: BrandBadgeProps) {
+export function BrandBadge({
+  brand,
+  onDark = false,
+  className = "",
+}: BrandBadgeProps) {
   const meta = brands[brand];
   const base = "inline-flex items-center gap-1.5 self-start whitespace-nowrap rounded-full font-mono uppercase";
 
@@ -38,5 +43,38 @@ export function BrandBadge({ brand, onDark = false, className = "" }: BrandBadge
       <span className="sr-only">Marca: </span>
       {meta.label}
     </span>
+  );
+}
+
+/**
+ * Dedicated Brand Logo component for prominent display in technical sheets,
+ * modals, or partner sections where the official logo is shown at high resolution.
+ */
+export function BrandLogo({
+  brand,
+  className = "",
+  size = "md",
+}: {
+  brand: Brand;
+  className?: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const meta = brands[brand];
+  const sizeClasses = {
+    sm: "h-6 max-w-[90px]",
+    md: "h-8 max-w-[120px]",
+    lg: "h-11 max-w-[160px]",
+  };
+  return (
+    <div
+      className={`inline-flex items-center justify-center rounded-xs border border-line-soft bg-white px-2.5 py-1 shadow-2xs ${className}`}
+      title={meta.fullName}
+    >
+      <img
+        src={meta.logo}
+        alt={meta.logoAlt}
+        className={`${sizeClasses[size]} w-auto object-contain`}
+      />
+    </div>
   );
 }

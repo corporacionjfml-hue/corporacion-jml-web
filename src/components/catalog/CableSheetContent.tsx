@@ -58,12 +58,12 @@ export function CableSheetContent({
 
   const temperature = cable.temperature;
   const specCandidates: [string, string | undefined][] = [
+    ["Marca", brands[cable.brand].label],
     ["Tensión nominal", cable.voltage],
     ["T° operación", temperature?.operation],
-    ["T° emergencia", temperature?.emergency],
-    ["Cortocircuito", temperature?.shortCircuit],
-    ["Marca", brands[cable.brand].label],
     ["Rango", getGaugeRange(cable)],
+    ["Cortocircuito", temperature?.shortCircuit],
+    ["T° emergencia", temperature?.emergency],
   ];
   const specs = specCandidates
     .filter(
@@ -103,9 +103,25 @@ export function CableSheetContent({
                 <dt className="font-mono text-[10.5px] uppercase tracking-[1.2px] text-mute-2">
                   {label}
                 </dt>
-                <dd className="m-0 mt-1.5 text-[20px] font-extrabold text-navy">
-                  {value}
-                </dd>
+                {label === "Marca" ? (
+                  <dd className="m-0 mt-1.5 flex items-center gap-2">
+                    <span className="flex h-7 shrink-0 items-center justify-center rounded-xs border border-line-soft bg-white px-2 py-0.5 shadow-2xs">
+                      <img
+                        src={brands[cable.brand].logo}
+                        alt={brands[cable.brand].logoAlt}
+                        className="h-full w-auto max-w-[72px] object-contain"
+                        height={22}
+                      />
+                    </span>
+                    <span className="font-mono text-[14px] font-bold text-navy">
+                      {value}
+                    </span>
+                  </dd>
+                ) : (
+                  <dd className="m-0 mt-1.5 text-[20px] font-extrabold text-navy">
+                    {value}
+                  </dd>
+                )}
               </div>
             ))}
           </dl>
