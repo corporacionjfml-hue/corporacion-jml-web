@@ -4,7 +4,7 @@ import { dataUri, loadOgFonts } from "@/lib/og/assets";
 
 // Required for `output: 'export'`: rendered once at build time.
 export const dynamic = "force-static";
-export const alt = "CORPORACION J & F SAC — Siempre Hay Opción";
+export const alt = "NEXA J & F — Siempre Hay Opción";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,7 +44,7 @@ export default async function OpenGraphImage() {
             display: "flex",
           }}
         >
-          {company.name}
+          NEXA J &amp; F
         </div>
         <div style={{ display: "flex", marginTop: 26 }}>
           <div

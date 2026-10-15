@@ -16,8 +16,9 @@ import { organizationJsonLd } from "@/lib/seo/seo";
 const title = `Cables eléctricos en Lima: catálogo y cotización | ${company.name}`;
 const description =
   "Catálogo de cables eléctricos: autosoportados, aluminio, subterráneos, baja tensión y especiales. Elige el cable correcto con el asistente y cotiza por WhatsApp.";
-// Link previews (WhatsApp, social) show the brand and slogan only.
-const shareTitle = `${company.name} — ${company.slogan}`;
+// Link previews (WhatsApp, social) use the client's requested share name and the slogan only.
+const shareTitle = "NEXA J & F";
+const shareDescription = company.slogan;
 
 export const metadata: Metadata = {
   title,
@@ -26,12 +27,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_PE",
-    siteName: company.name,
+    siteName: shareTitle,
     title: shareTitle,
-    description,
+    description: shareDescription,
     url: "/",
   },
-  twitter: { card: "summary_large_image", title: shareTitle, description },
+  twitter: { card: "summary_large_image", title: shareTitle, description: shareDescription },
 };
 
 /** Home in design order. */
