@@ -33,7 +33,7 @@ export const siteUrlConfigured: boolean = configuredSiteUrl !== "";
 export const gaId: string = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
 
 export const company = {
-  /** Legal name (razón social): footer legal line, contact block and structured data. */
+  /** Legal name (razón social): footer legal line and structured data (`legalName`). */
   name: "CORPORACION J & F SAC",
   /** Commercial name shown in the header, page titles, WhatsApp greetings and share previews. */
   tradeName: "NEXA J & F",
