@@ -13,11 +13,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { organizationJsonLd } from "@/lib/seo/seo";
 
-const title = `Cables eléctricos en Lima: catálogo y cotización | ${company.name}`;
+const title = `Cables eléctricos en Lima: catálogo y cotización | ${company.tradeName}`;
 const description =
   "Catálogo de cables eléctricos: autosoportados, aluminio, subterráneos, baja tensión y especiales. Elige el cable correcto con el asistente y cotiza por WhatsApp.";
 // Link previews (WhatsApp, social) use the client's requested share name and the slogan only.
-const shareTitle = "NEXA J & F";
+const shareTitle = company.tradeName;
 const shareDescription = company.slogan;
 
 export const metadata: Metadata = {

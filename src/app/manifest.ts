@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${company.name} — Catálogo de cables eléctricos`,
+    name: `${company.tradeName} — Catálogo de cables eléctricos`,
     short_name: "J & F SAC",
     description: `${company.slogan}. Catálogo de cables eléctricos y cotización por WhatsApp.`,
     start_url: "/",

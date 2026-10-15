@@ -33,8 +33,8 @@ export function Logo({ className = "" }: { className?: string }) {
     <span className={`inline-flex items-center gap-3 max-[419px]:gap-2 ${className}`}>
       <LogoMark className="block h-[38px] w-10 shrink-0 max-[419px]:h-8 max-[419px]:w-[34px] logo:h-[45px] logo:w-12" />
       <span className="flex flex-col gap-[3px] leading-none">
-        <span className="whitespace-nowrap text-[15px] font-medium tracking-[0.8px] text-[#1d1d1b] max-[419px]:text-[11.5px] max-[419px]:tracking-[0.2px] logo:text-[18px] logo:tracking-[1.2px]">
-          {company.name}
+        <span className="whitespace-nowrap text-[19px] font-bold tracking-[0.8px] text-[#1d1d1b] max-[419px]:text-[16px] max-[419px]:tracking-[0.4px] logo:text-[23px] logo:tracking-[1.2px]">
+          {company.tradeName}
         </span>
         <span className="whitespace-nowrap text-[8.5px] tracking-[1.6px] text-ink-slogan max-[419px]:hidden logo:text-[10px] logo:tracking-[2.2px]">
           {company.slogan.toUpperCase()}

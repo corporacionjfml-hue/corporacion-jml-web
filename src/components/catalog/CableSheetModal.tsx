@@ -76,7 +76,7 @@ function SheetDialog({
 
   const whatsappLink = whatsappUrl(
     company.quotesWhatsApp,
-    `Hola ${company.name}, quisiera cotizar el cable ${cable.name}.`,
+    `Hola ${company.tradeName}, quisiera cotizar el cable ${cable.name}.`,
   );
 
   return (

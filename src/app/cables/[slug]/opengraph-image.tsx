@@ -24,7 +24,7 @@ export default async function CableOpenGraphImage({
 }) {
   const { slug } = await params;
   const cable = getCableBySlug(slug);
-  const title = cable?.name ?? company.name;
+  const title = cable?.name ?? company.tradeName;
   const subtitle = (cable?.fullName ?? company.slogan).replace(/^Cable\s+\S+\s+—\s+/, "");
   const nameSize = title.length > 18 ? 58 : title.length > 14 ? 70 : title.length > 9 ? 96 : 120;
 
@@ -123,7 +123,7 @@ export default async function CableOpenGraphImage({
                 display: "flex",
               }}
             >
-              {company.name}
+              {company.tradeName}
             </div>
           </div>
           <div style={{ display: "flex" }}>

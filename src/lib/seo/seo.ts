@@ -39,7 +39,7 @@ function stripRepeatedName(cable: Cable): string {
 
 /** "{name} — {fullName} | BRAND", shortening the full name so the title fits ~70 chars. */
 export function buildCableTitle(cable: Cable): string {
-  const suffix = ` | ${company.name}`;
+  const suffix = ` | ${company.tradeName}`;
   const full = `${cable.name} — ${cable.fullName}${suffix}`;
   if (full.length <= MAX_TITLE) return full;
   const detail = stripRepeatedName(cable);
@@ -77,7 +77,8 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: company.name,
+    name: company.tradeName,
+    legalName: company.name,
     slogan: company.slogan,
     taxID: company.ruc,
     description:

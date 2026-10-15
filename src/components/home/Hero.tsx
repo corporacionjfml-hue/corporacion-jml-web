@@ -3,7 +3,7 @@ import { company, whatsappUrl } from "@/data/company";
 import { Assistant } from "./Assistant";
 import { CableDiscs } from "./CableDiscs";
 
-const quoteGreeting = `Hola ${company.name}, quisiera cotizar cables.`;
+const quoteGreeting = `Hola ${company.tradeName}, quisiera cotizar cables.`;
 
 /** Trust row. The brands item names the client's three brands. */
 const trustItems = [

@@ -13,7 +13,7 @@ export function Footer() {
         <div className="flex flex-col gap-3.5">
           <Link
             href="/"
-            aria-label={`${company.name}, ir al inicio`}
+            aria-label={`${company.tradeName}, ir al inicio`}
             className="inline-flex min-h-11 items-center self-start text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
           >
             <Logo />

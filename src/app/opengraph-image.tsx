@@ -44,7 +44,7 @@ export default async function OpenGraphImage() {
             display: "flex",
           }}
         >
-          NEXA J &amp; F
+          {company.tradeName}
         </div>
         <div style={{ display: "flex", marginTop: 26 }}>
           <div

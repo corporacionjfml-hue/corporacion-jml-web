@@ -18,7 +18,7 @@ export function buildQuoteMessage(
   extras: QuoteExtras = {},
 ): string {
   const buyer = buyerType ? ` (compra ${buyerType})` : "";
-  const lines = [`Hola ${company.name}, quisiera cotizar${buyer}:`];
+  const lines = [`Hola ${company.tradeName}, quisiera cotizar${buyer}:`];
   for (const item of items) {
     const cable = findCable(item.cableId);
     const name = cable ? `${cable.name} (${brands[cable.brand].label})` : item.cableId;

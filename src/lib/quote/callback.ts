@@ -70,7 +70,7 @@ export function buildCallbackMessage(
   buyerType: BuyerType | null,
 ): string {
   const phone = normalizePhone(values.phone);
-  const lines = [`Hola ${company.name}, quisiera que me llamen para cotizar.`, ""];
+  const lines = [`Hola ${company.tradeName}, quisiera que me llamen para cotizar.`, ""];
   lines.push(`Nombre: ${values.name.trim()}`);
   if (values.company.trim()) lines.push(`Empresa: ${values.company.trim()}`);
   lines.push(`Teléfono: ${phone ? formatPhone(phone) : values.phone.trim()}`);
@@ -98,7 +98,7 @@ export function buildCallbackPayload(
 ): Record<string, string> {
   const phone = normalizePhone(values.phone);
   const payload: Record<string, string> = {
-    subject: `Solicitud de llamada — ${company.name}`,
+    subject: `Solicitud de llamada — ${company.tradeName}`,
     from_name: values.name.trim(),
     name: values.name.trim(),
     company: values.company.trim(),

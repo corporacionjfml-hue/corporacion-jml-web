@@ -132,11 +132,11 @@ export function CallbackForm() {
     const copy = {
       sent: {
         title: "¡Solicitud recibida!",
-        text: `Un asesor de ${company.name} se comunicará contigo. Si es urgente, escríbenos por WhatsApp.`,
+        text: `Un asesor de ${company.tradeName} se comunicará contigo. Si es urgente, escríbenos por WhatsApp.`,
       },
       whatsapp: {
         title: "Continúa en WhatsApp",
-        text: `Abrimos WhatsApp con tus datos. Envía el mensaje para que un asesor de ${company.name} se comunique contigo. Si no se abrió, usa el botón.`,
+        text: `Abrimos WhatsApp con tus datos. Envía el mensaje para que un asesor de ${company.tradeName} se comunique contigo. Si no se abrió, usa el botón.`,
       },
       failed: {
         title: "No pudimos enviar tu solicitud",

@@ -42,7 +42,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: "es_PE",
-      siteName: company.name,
+      siteName: company.tradeName,
       title,
       description,
       url: absoluteUrl(cablePath(cable)),
@@ -75,7 +75,7 @@ export default async function CablePage({ params }: CablePageProps) {
   const related = relatedCables(cable);
   const whatsappLink = whatsappUrl(
     company.quotesWhatsApp,
-    `Hola ${company.name}, quisiera cotizar el cable ${cable.name}.`,
+    `Hola ${company.tradeName}, quisiera cotizar el cable ${cable.name}.`,
   );
 
   return (

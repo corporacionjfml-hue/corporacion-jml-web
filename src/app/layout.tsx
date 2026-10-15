@@ -28,13 +28,13 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   // Placeholder origin until NEXT_PUBLIC_SITE_URL is configured (see README).
   metadataBase: new URL(siteUrl),
-  title: `${company.name} | Catálogo de cables eléctricos`,
-  description: `Catálogo de cables eléctricos de ${company.name}. ${company.slogan}: elige el cable correcto y cotiza por WhatsApp.`,
-  applicationName: company.name,
+  title: `${company.tradeName} | Catálogo de cables eléctricos`,
+  description: `Catálogo de cables eléctricos de ${company.tradeName}. ${company.slogan}: elige el cable correcto y cotiza por WhatsApp.`,
+  applicationName: company.tradeName,
   openGraph: {
     type: "website",
     locale: "es_PE",
-    siteName: company.name,
+    siteName: company.tradeName,
   },
   twitter: { card: "summary_large_image" },
 };

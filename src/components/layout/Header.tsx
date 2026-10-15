@@ -33,7 +33,7 @@ export function Header({ quoteCount: quoteCountOverride }: HeaderProps) {
       <div className="wrap flex min-h-[78px] items-center justify-between gap-4 max-[419px]:gap-2 max-[419px]:px-3.5">
         <Link
           href="/"
-          aria-label={`${company.name}, ir al inicio`}
+          aria-label={`${company.tradeName}, ir al inicio`}
           className="inline-flex min-h-11 items-center text-[#1d1d1b] no-underline hover:text-[#1d1d1b]"
         >
           <Logo />

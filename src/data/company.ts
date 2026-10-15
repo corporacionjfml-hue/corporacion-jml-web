@@ -33,7 +33,10 @@ export const siteUrlConfigured: boolean = configuredSiteUrl !== "";
 export const gaId: string = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
 
 export const company = {
+  /** Legal name (razón social): footer legal line, contact block and structured data. */
   name: "CORPORACION J & F SAC",
+  /** Commercial name shown in the header, page titles, WhatsApp greetings and share previews. */
+  tradeName: "NEXA J & F",
   slogan: "Siempre Hay Opción",
   ruc: "20614708002",
   address: "Av. Manuel del Valle 1523, Lima-Lurín",
@@ -71,4 +74,4 @@ export function telHref(number: string): string {
   return `tel:+${number}`;
 }
 
-export const generalGreeting = `Hola ${company.name}, quisiera información sobre sus cables.`;
+export const generalGreeting = `Hola ${company.tradeName}, quisiera información sobre sus cables.`;
