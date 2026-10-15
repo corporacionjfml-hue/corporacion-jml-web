@@ -38,7 +38,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-0.5 text-[14.5px] text-ink">
           <span className="kicker mb-1.5">Contacto</span>
-          <strong className="py-1 font-extrabold">{company.name}</strong>
+          <strong className="py-1 font-extrabold">{company.tradeName}</strong>
           <span className="py-1">RUC: {company.ruc}</span>
           <span className="py-1">{company.address}</span>
           {company.phones.map((phone) => (
