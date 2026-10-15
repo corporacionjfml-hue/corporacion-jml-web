@@ -586,7 +586,6 @@ body {
   .ring,
   .blob,
   .tag,
-  .marquee,
   .pulse::after,
   .wa-btn::after {
     animation: none !important;
@@ -680,15 +679,5 @@ body {
     color: var(--color-ink);
     font-weight: 600;
     box-shadow: 6px 0 10px -8px rgba(20, 38, 58, 0.35);
-  }
-}
-
-/* Marquee: with reduced motion the band stops, drops the duplicate and scrolls by hand */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-band {
-    overflow-x: auto;
-  }
-  .marquee-dup {
-    display: none;
   }
 }

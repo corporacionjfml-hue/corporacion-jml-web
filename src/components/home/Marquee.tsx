@@ -25,7 +25,7 @@ function Names({ hidden = false }: { hidden?: boolean }) {
   );
 }
 
-/** Product-line names scrolling on a navy band; static and scrollable with reduced motion. */
+/** Product-line names scrolling on a navy band; keeps moving even with reduced motion (client decision). */
 export function Marquee() {
   return (
     <section
