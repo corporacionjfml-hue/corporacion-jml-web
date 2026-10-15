@@ -14,7 +14,7 @@ const trustItems = [
 
 export function Hero() {
   return (
-    <section
+    <section 
       id="asistente"
       aria-label="Presentación y asistente"
       className="relative scroll-mt-19.5 overflow-hidden bg-page"
