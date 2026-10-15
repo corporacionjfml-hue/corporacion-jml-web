@@ -575,23 +575,6 @@ body {
   }
 }
 
-/* Reduced motion: disable every animation */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .rise,
-  .mark,
-  .spin,
-  .ring,
-  .blob,
-  .tag,
-  .pulse::after,
-  .wa-btn::after {
-    animation: none !important;
-  }
-}
-
 /* Catalog: quote state, sheet tabs and technical table */
 @layer components {
   .btn-added {
