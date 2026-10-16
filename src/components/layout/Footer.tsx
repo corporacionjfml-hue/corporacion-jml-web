@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { company, generalGreeting, whatsappUrl } from "@/data/company";
 import { navItems } from "./navItems";
@@ -59,9 +60,11 @@ export function Footer() {
             href={company.social.tiktokUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={linkClass}
+            aria-label={`TikTok ${company.social.handle}`}
+            className={`${linkClass} gap-2`}
           >
-            TikTok {company.social.handle}
+            <Icon name="tiktok" size={20} className="text-lime-dark" />
+            {company.social.handle}
           </a>
         </div>
       </div>

@@ -155,10 +155,11 @@ export function QuoteSection() {
                   href={company.social.tiktokUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`TikTok ${company.social.handle}`}
                   className={contactLink}
                 >
-                  <Icon name="at" size={20} className="text-lime" strokeWidth={1.8} />
-                  TikTok {company.social.handle}
+                  <Icon name="tiktok" size={20} className="text-lime" strokeWidth={1.8} />
+                  {company.social.handle}
                 </a>
               </li>
               <li>
