@@ -32,6 +32,9 @@ export const siteUrlConfigured: boolean = configuredSiteUrl !== "";
 /** GA4 measurement id (G-XXXXXXX). Analytics is disabled while empty. */
 export const gaId: string = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
 
+/** TikTok account where successful deliveries are shown (single source for handle and URL). */
+const tiktokHandle = "@nexajf";
+
 export const company = {
   /** Legal name (razón social): footer legal line and structured data (`legalName`). */
   name: "CORPORACION J & F SAC",
@@ -46,9 +49,8 @@ export const company = {
   ] satisfies CompanyPhone[],
   email: "corporacionj@gmail.com",
   social: {
-    /** TikTok account where successful deliveries are shown. */
-    handle: "@nexajf",
-    tiktokUrl: "https://www.tiktok.com/@nexajf",
+    handle: tiktokHandle,
+    tiktokUrl: `https://www.tiktok.com/${tiktokHandle}`,
   },
   /** Quotes are always sent to this WhatsApp number. */
   quotesWhatsApp: "51948271308",
