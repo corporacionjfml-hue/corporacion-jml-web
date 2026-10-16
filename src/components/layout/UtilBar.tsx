@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 import { company, generalGreeting, whatsappUrl } from "@/data/company";
 
 /** Top info bar, only from 768px. No website link by project decision. */
@@ -23,9 +24,11 @@ export function UtilBar() {
             href={company.social.tiktokUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-on-navy no-underline hover:text-white"
+            aria-label={`TikTok ${company.social.handle}`}
+            className="inline-flex items-center gap-1.5 text-on-navy no-underline hover:text-white"
           >
-            TikTok {company.social.handle}
+            <Icon name="tiktok" size={16} className="text-lime" />
+            {company.social.handle}
           </a>
         </span>
       </div>
