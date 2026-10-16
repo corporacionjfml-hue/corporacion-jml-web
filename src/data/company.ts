@@ -46,8 +46,9 @@ export const company = {
   ] satisfies CompanyPhone[],
   email: "corporacionj@gmail.com",
   social: {
-    handle: "@CorporacionJML",
-    pendingConfirmation: true,
+    /** TikTok account where successful deliveries are shown. */
+    handle: "@nexajf",
+    tiktokUrl: "https://www.tiktok.com/@nexajf",
   },
   /** Quotes are always sent to this WhatsApp number. */
   quotesWhatsApp: "51948271308",
