@@ -55,13 +55,14 @@ export function Footer() {
           <a href={`mailto:${company.email}`} className={linkClass}>
             {company.email}
           </a>
-          {/* Social handle is provisional until the client confirms it. */}
-          <span className="py-1">
-            {company.social.handle}
-            {company.social.pendingConfirmation && (
-              <span className="text-mute-2"> (por confirmar)</span>
-            )}
-          </span>
+          <a
+            href={company.social.tiktokUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            TikTok {company.social.handle}
+          </a>
         </div>
       </div>
       <div className="wrap mt-7 border-t border-line-soft pt-5 text-[12.5px] text-mute-2">

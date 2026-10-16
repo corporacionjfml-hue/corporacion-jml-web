@@ -19,8 +19,14 @@ export function UtilBar() {
           >
             {phone.display}
           </a>
-          {/* Social handle is provisional until the client confirms it. */}
-          <span>{company.social.handle}</span>
+          <a
+            href={company.social.tiktokUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-on-navy no-underline hover:text-white"
+          >
+            TikTok {company.social.handle}
+          </a>
         </span>
       </div>
     </div>

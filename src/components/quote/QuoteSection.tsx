@@ -151,14 +151,15 @@ export function QuoteSection() {
                 </li>
               ))}
               <li>
-                {/* Social handle is provisional until the client confirms it. */}
-                <span className="inline-flex min-h-11 items-center gap-2 text-on-navy-2">
+                <a
+                  href={company.social.tiktokUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={contactLink}
+                >
                   <Icon name="at" size={20} className="text-lime" strokeWidth={1.8} />
-                  {company.social.handle}
-                  {company.social.pendingConfirmation && (
-                    <span className="text-on-navy-3"> (por confirmar)</span>
-                  )}
-                </span>
+                  TikTok {company.social.handle}
+                </a>
               </li>
               <li>
                 <a href={`mailto:${company.email}`} className={contactLink}>
